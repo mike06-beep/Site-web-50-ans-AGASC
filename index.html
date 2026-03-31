@@ -1931,6 +1931,15 @@
   closeBtn.addEventListener('click', closeMenu);
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
+  // Ferme le menu si clic en dehors du nav (pas au scroll)
+  document.addEventListener('click', (e) => {
+    if (links.classList.contains('open') &&
+        !nav.contains(e.target) &&
+        !closeBtn.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 50);
     updateActive();
