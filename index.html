@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>AGASC 50 ans Ensemble — Événement anniversaire 27 septembre 2026 | Saint-Laurent-du-Var</title>
   <meta name="description" content="Célébrez 50 ans de vie ensemble avec l'AGASC à Saint-Laurent-du-Var (Alpes-Maritimes). Grand événement public le 27 septembre 2026 au Parc Layet : sport, culture, loisirs, social. Association laurentine depuis 1976." />
   <meta name="robots" content="index, follow" />
@@ -1178,7 +1178,7 @@
     /* ===== DRAWER MOBILE ===== */
     #nav-overlay {
       display: none; position: fixed; inset: 0; z-index: 1001;
-      background: rgba(0,0,0,0.55); backdrop-filter: blur(3px);
+      background: rgba(0,0,0,0.6);
       opacity: 0; transition: opacity 0.3s;
     }
     #nav-overlay.open { display: block; opacity: 1; }
@@ -1198,14 +1198,14 @@
       /* Drawer latéral */
       .nav-links {
         position: fixed !important; top: 0; right: 0; bottom: 0;
-        width: min(280px, 80vw); z-index: 1002;
+        width: min(360px, 88vw); z-index: 1002;
         display: flex !important; flex-direction: column;
-        background: linear-gradient(170deg, #161e55 0%, #27348b 100%);
-        padding: 4.5rem 1.5rem 2rem; gap: 0.25rem;
+        background: linear-gradient(170deg, #161e55 0%, #1e2d8a 60%, #27348b 100%);
+        padding: 5rem 2rem 2.5rem; gap: 0.5rem;
         transform: translateX(105%);
         transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-        box-shadow: -10px 0 40px rgba(0,0,0,0.45);
-        border-left: 1px solid rgba(232,187,63,0.15);
+        box-shadow: -12px 0 50px rgba(0,0,0,0.5);
+        border-left: 1px solid rgba(232,187,63,0.2);
         overflow-y: auto;
       }
       .nav-links.open { transform: translateX(0); }
@@ -1214,7 +1214,8 @@
       /* Liens dans le drawer */
       .nav-links li a::after { display: none !important; }
       .nav-links li a:not(.nav-cta) {
-        padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.92rem;
+        padding: 1rem 1.2rem; border-radius: 10px; font-size: 1rem;
+        font-weight: 500; letter-spacing: 0.02em;
         border-left: 2px solid transparent;
         transition: background 0.2s, border-color 0.2s, color 0.2s;
       }
@@ -1223,8 +1224,8 @@
         background: rgba(255,255,255,0.07); border-left-color: var(--gold); color: var(--gold);
       }
       .nav-links li .nav-cta {
-        margin-top: 0.8rem; text-align: center; display: block;
-        padding: 0.7rem 1.2rem !important;
+        margin-top: 1rem; text-align: center; display: block;
+        padding: 0.85rem 1.5rem !important; font-size: 1rem !important;
       }
       /* Séparateur doré bas du drawer */
       .nav-links::after {
