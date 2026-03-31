@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AGASC 50 ans — 50 ans Ensemble | Saint-Laurent-du-Var</title>
+  <meta name="description" content="Célébrez 50 ans de vie ensemble avec l'AGASC à Saint-Laurent-du-Var. Grand événement le 27 septembre 2026 au Parc Layet. Sport, Loisirs, Culture, Social depuis 1976." />
+  <meta property="og:title" content="AGASC — 50 ans Ensemble (1976-2026)" />
+  <meta property="og:description" content="50 ans de Sport, Loisirs, Culture et Social. Célébration le 27 septembre 2026 au Parc Layet, Saint-Laurent-du-Var." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/logos/agasc-50ans-fond.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #1a1a2e;
+      background: #faf9f7;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    /* ===== VARIABLES CHARTE AGASC ===== */
+    :root {
+      --blue: #27348b;
+      --blue-dark: #1a2260;
+      --blue-light: #3a4aab;
+      --gold: #d4aa48;
+      --gold-light: #e6c46e;
+      --gold-dark: #b8912e;
+      --cream: #faf9f7;
+      --coral: #c9604a;
+      --text-dark: #1a1a2e;
+      --text-mid: #4a4a6a;
+      --text-light: #7a7a9a;
+      --white: #ffffff;
+      --section-alt: #f0f2fb;
+    }
+
+    /* ===== SCROLL PROGRESS ===== */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.1s;
+    }
+
+    /* ===== NAVBAR ===== */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0.8rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+      overflow: visible;
+      max-width: 100vw;
+    }
+    #navbar.scrolled {
+      background: rgba(39, 52, 139, 0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+      padding: 0.5rem 2rem;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.7rem;
+      text-decoration: none;
+    }
+    .nav-logo-img {
+      height: 70px; width: 70px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      position: relative;
+      top: 10px;
+      transition: height 0.4s, width 0.4s, top 0.4s, transform 0.3s, box-shadow 0.3s;
+    }
+    .nav-logo-img:hover {
+      transform: scale(1.08) rotate(3deg);
+      box-shadow: 0 6px 25px rgba(212,170,72,0.35);
+    }
+    #navbar.scrolled .nav-logo-img {
+      height: 46px; width: 46px;
+      top: 0;
+    }
+    .nav-logo-text {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 800; font-size: 1.15rem;
+      color: var(--white); line-height: 1.1;
+    }
+    .nav-logo-text span {
+      display: block;
+      font-size: 0.62rem; font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,0.85);
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.03em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--blue-dark) !important;
+      padding: 0.45rem 1.1rem !important;
+      border-radius: 50px !important;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: scale(1.04); }
+    .nav-burger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .nav-burger span {
+      display: block; width: 24px; height: 2px;
+      background: white; border-radius: 2px; transition: 0.3s;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #1a2260 0%, #27348b 40%, #3a4aab 75%, #27348b 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+    }
+    .hero-bg-shapes {
+      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+    }
+    .hero-bg-shapes::before {
+      content: '';
+      position: absolute; top: -20%; right: -10%;
+      width: 60vw; height: 60vw; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,170,72,0.12) 0%, transparent 70%);
+      animation: pulse-glow 6s ease-in-out infinite;
+    }
+    .hero-bg-shapes::after {
+      content: '';
+      position: absolute; bottom: -15%; left: -10%;
+      width: 50vw; height: 50vw; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,170,72,0.08) 0%, transparent 70%);
+      animation: pulse-glow 8s ease-in-out infinite 2s;
+    }
+    .hero-transition {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent 0%, var(--blue-dark) 100%);
+      pointer-events: none;
+    }
+    .hero-50 {
+      position: absolute;
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(8rem, 20vw, 22rem);
+      font-weight: 900;
+      color: rgba(255,255,255,0.03);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none; user-select: none;
+      white-space: nowrap; line-height: 1;
+    }
+    .hero-logo {
+      width: clamp(100px, 18vw, 160px);
+      height: auto;
+      margin-bottom: 1.5rem;
+      animation: fade-up 0.7s ease both;
+      filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212,170,72,0.15);
+      border: 1px solid rgba(212,170,72,0.4);
+      color: var(--gold-light);
+      padding: 0.4rem 1.2rem; border-radius: 50px;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      animation: fade-up 0.8s ease 0.1s both;
+    }
+    .hero-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(2.2rem, 5.5vw, 4.8rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.08; margin-bottom: 1rem;
+      animation: fade-up 0.9s ease 0.15s both;
+    }
+    .hero-title .gold { color: var(--gold); }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.75);
+      font-weight: 300; margin-bottom: 0.6rem;
+      font-style: italic;
+      animation: fade-up 1s ease 0.25s both;
+    }
+    .hero-tagline {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fade-up 1.05s ease 0.3s both;
+    }
+    .hero-date {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 50px;
+      padding: 0.5rem 1.3rem;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.92rem; font-weight: 500;
+      margin-bottom: 2.5rem;
+      animation: fade-up 1.1s ease 0.35s both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3rem;
+      animation: fade-up 1.2s ease 0.4s both;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--blue-dark);
+      padding: 0.9rem 2rem; border-radius: 50px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: all 0.25s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Raleway', sans-serif;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212,170,72,0.4);
+    }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      padding: 0.9rem 2rem; border-radius: 50px;
+      font-weight: 600; font-size: 0.95rem;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.4);
+      cursor: pointer; transition: all 0.25s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Raleway', sans-serif;
+    }
+    .btn-outline:hover {
+      border-color: var(--gold); color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ===== COUNTDOWN ===== */
+    .countdown-wrapper { animation: fade-up 1.3s ease 0.5s both; }
+    .countdown-label {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .countdown {
+      display: flex; gap: 0.8rem;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .countdown-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 0.9rem 1.2rem; min-width: 78px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+    .countdown-num {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2rem; font-weight: 900;
+      color: var(--gold); line-height: 1;
+      display: block;
+    }
+    .countdown-unit {
+      font-size: 0.6rem; color: rgba(255,255,255,0.5);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-top: 0.25rem; display: block;
+    }
+
+    /* ===== SCROLL INDICATOR ===== */
+    .scroll-indicator {
+      position: absolute; bottom: 5rem;
+      left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.4rem;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: fade-up 2s ease 1s both;
+    }
+    .scroll-mouse {
+      width: 20px; height: 32px;
+      border: 2px solid rgba(255,255,255,0.25);
+      border-radius: 12px;
+      display: flex; justify-content: center; padding-top: 5px;
+    }
+    .scroll-mouse::before {
+      content: ''; width: 3px; height: 8px;
+      background: rgba(255,255,255,0.45);
+      border-radius: 2px;
+      animation: scroll-bounce 2s ease-in-out infinite;
+    }
+
+    /* ===== SECTIONS ===== */
+    section { position: relative; }
+    .section-inner {
+      max-width: 1200px; margin: 0 auto; padding: 5rem 2rem;
+    }
+    .section-tag {
+      display: inline-block;
+      color: var(--gold-dark);
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 900; color: var(--blue-dark);
+      line-height: 1.15; margin-bottom: 1rem;
+    }
+    .section-lead {
+      font-size: 1.05rem; color: var(--text-mid);
+      line-height: 1.7; max-width: 600px; font-weight: 300;
+    }
+
+    /* ===== CHIFFRES CLÉS ===== */
+    #chiffres { background: var(--blue-dark); }
+    .chiffres-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .chiffre-item {
+      padding: 3rem 2rem; text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .chiffre-item:last-child { border-right: none; }
+    .chiffre-num {
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(3rem, 5.5vw, 4.5rem);
+      font-weight: 900; color: var(--gold);
+      line-height: 1; display: block;
+    }
+    .chiffre-label {
+      font-size: 0.88rem; color: rgba(255,255,255,0.65);
+      margin-top: 0.5rem; font-weight: 300; line-height: 1.5;
+    }
+    .chiffre-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px;
+      margin: 0 auto 0.8rem;
+      border: 1.5px solid rgba(212,170,72,0.3);
+      border-radius: 50%;
+      background: rgba(212,170,72,0.08);
+    }
+    .chiffre-icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--gold); fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ===== NOS CENTRES ===== */
+    #centres { background: var(--cream); }
+    .centres-header { text-align: center; margin-bottom: 3.5rem; }
+    .centres-header .section-lead { margin: 0 auto; }
+    .centres-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .centre-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(39,52,139,0.06);
+      cursor: default;
+      opacity: 0; transform: translateY(30px);
+    }
+    .centre-card.revealed {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s;
+    }
+    .centre-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(39,52,139,0.12);
+    }
+    .centre-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .centre-card:hover::before { transform: scaleX(1); }
+    .centre-logo {
+      width: 80px; height: 80px;
+      object-fit: contain;
+      margin: 0 auto 1rem;
+      display: block;
+      border-radius: 50%;
+    }
+    .centre-name {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.1rem; font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 0.5rem;
+    }
+    .centre-desc {
+      font-size: 0.85rem; color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    /* Colors per centre */
+    .centre-card[data-color="culturel"]::before { background: #7bb9af; }
+    .centre-card[data-color="danse"]::before { background: #d9add1; }
+    .centre-card[data-color="nautique"]::before { background: #2d2e85; }
+    .centre-card[data-color="tennis"]::before { background: #bf4221; }
+    .centre-card[data-color="equestre"]::before { background: #046635; }
+    .centre-card[data-color="jaquons"]::before { background: #0197b8; }
+    .centre-card[data-color="gueyeurs"]::before { background: #00dfff; }
+    .centre-card[data-color="aajie"]::before { background: #01406b; }
+
+    /* ===== PILIERS ÉVÉNEMENT ===== */
+    #piliers { background: var(--section-alt); }
+    .piliers-header { text-align: center; margin-bottom: 3.5rem; }
+    .piliers-header .section-lead { margin: 0 auto; }
+    .piliers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .pilier-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(39,52,139,0.06);
+      cursor: default;
+      opacity: 0; transform: translateY(30px);
+    }
+    .pilier-card.revealed {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s;
+    }
+    .pilier-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(39,52,139,0.12);
+    }
+    .pilier-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--blue));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .pilier-card:hover::before { transform: scaleX(1); }
+    .pilier-icon {
+      width: 68px; height: 68px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 1rem;
+      background: rgba(39,52,139,0.06);
+    }
+    .pilier-name {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.2rem; font-weight: 800;
+      color: var(--blue-dark); margin-bottom: 0.3rem;
+    }
+    .pilier-sub {
+      font-size: 0.75rem; color: var(--gold-dark);
+      font-weight: 600; letter-spacing: 0.05em;
+      margin-bottom: 0.7rem; font-style: italic;
+    }
+    .pilier-desc {
+      font-size: 0.85rem; color: var(--text-mid); line-height: 1.6;
+    }
+
+    /* ===== ÉVÉNEMENT ===== */
+    #evenement { background: var(--cream); }
+    .evenement-header { text-align: center; margin-bottom: 3.5rem; }
+    .evenement-header .section-lead { margin: 0 auto; }
+    .programme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-bottom: 4rem;
+    }
+    .programme-card {
+      background: var(--white);
+      border-radius: 18px; padding: 1.8rem;
+      border: 1px solid rgba(39,52,139,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0; transform: translateY(20px);
+    }
+    .programme-card.revealed {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s;
+    }
+    .programme-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(39,52,139,0.1);
+    }
+    .programme-emoji { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .programme-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.1rem; font-weight: 800;
+      color: var(--blue-dark); margin-bottom: 0.6rem;
+    }
+    .programme-desc {
+      font-size: 0.85rem; color: var(--text-mid); line-height: 1.65;
+    }
+
+    /* Timeline journée */
+    .timeline-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--blue-dark);
+      text-align: center; margin-bottom: 2.5rem;
+    }
+    .timeline {
+      position: relative; max-width: 700px; margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 50%;
+      top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--blue), var(--gold));
+      transform: translateX(-50%);
+    }
+    .tl-item {
+      display: flex; gap: 1.5rem;
+      margin-bottom: 2rem; align-items: flex-start;
+    }
+    .tl-item:nth-child(even) { flex-direction: row-reverse; }
+    .tl-content {
+      flex: 1; background: var(--white);
+      border-radius: 14px; padding: 1.2rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(39,52,139,0.06);
+      text-align: right;
+    }
+    .tl-item:nth-child(even) .tl-content { text-align: left; }
+    .tl-time {
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--gold-dark);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .tl-name {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--blue-dark);
+    }
+    .tl-dot {
+      width: 14px; height: 14px;
+      background: var(--gold);
+      border: 3px solid var(--white);
+      border-radius: 50%; flex-shrink: 0;
+      margin-top: 1.5rem;
+      box-shadow: 0 0 0 3px var(--gold);
+      position: relative; z-index: 1;
+    }
+
+    /* ===== PARTENAIRES ===== */
+    #partenaires {
+      background: linear-gradient(135deg, #1a2260 0%, #27348b 60%, #2a3578 100%);
+      color: var(--white);
+    }
+    .partenaires-header { text-align: center; margin-bottom: 3rem; }
+    .partenaires-header .section-title { color: var(--white); }
+    .partenaires-header .section-lead { color: rgba(255,255,255,0.7); max-width: 650px; margin: 0 auto; }
+    .roi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem; margin-bottom: 4rem;
+    }
+    .roi-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 1.4rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: background 0.3s;
+    }
+    .roi-item:hover { background: rgba(255,255,255,0.1); }
+    .roi-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .roi-text { font-size: 0.88rem; color: rgba(255,255,255,0.8); line-height: 1.5; }
+    .roi-text strong { color: var(--gold); display: block; margin-bottom: 0.2rem; font-size: 0.92rem; }
+
+    /* Niveaux partenariat */
+    .niveaux-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.6rem; font-weight: 800;
+      color: var(--white);
+      text-align: center; margin-bottom: 2rem;
+    }
+    .niveaux-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-bottom: 3rem;
+    }
+    .niveau-card {
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center; position: relative;
+      overflow: hidden; transition: transform 0.3s;
+    }
+    .niveau-card:hover { transform: translateY(-6px); }
+    .niveau-card.bronze {
+      background: rgba(205,127,50,0.12);
+      border: 2px solid rgba(205,127,50,0.35);
+    }
+    .niveau-card.silver {
+      background: rgba(192,192,192,0.1);
+      border: 2px solid rgba(192,192,192,0.35);
+    }
+    .niveau-card.gold-tier {
+      background: rgba(212,170,72,0.12);
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 40px rgba(212,170,72,0.12);
+    }
+    .niveau-badge { font-size: 2.5rem; display: block; margin-bottom: 0.8rem; }
+    .niveau-name {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      color: var(--white); margin-bottom: 0.3rem;
+    }
+    .niveau-subtitle {
+      font-size: 0.75rem; color: rgba(255,255,255,0.55);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .niveau-features { list-style: none; text-align: left; }
+    .niveau-features li {
+      font-size: 0.85rem; color: rgba(255,255,255,0.75);
+      padding: 0.4rem 0; display: flex;
+      gap: 0.6rem; align-items: flex-start;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .niveau-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .niveau-card.gold-tier .niveau-popular {
+      position: absolute; top: 1rem; right: -2rem;
+      background: var(--gold); color: var(--blue-dark);
+      font-size: 0.65rem; font-weight: 800;
+      padding: 0.25rem 2.5rem;
+      transform: rotate(30deg);
+      letter-spacing: 0.05em;
+      font-family: 'Raleway', sans-serif;
+    }
+    .partenaires-cta {
+      display: flex; gap: 1rem;
+      justify-content: center; flex-wrap: wrap;
+    }
+
+    /* ===== FORMULAIRE PARTENAIRE ===== */
+    #contact { background: var(--cream); }
+    .contact-wrapper {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .contact-info h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--blue-dark); margin-bottom: 1rem;
+    }
+    .contact-info p {
+      color: var(--text-mid); line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .contact-detail {
+      display: flex; align-items: center;
+      gap: 0.8rem; margin-bottom: 0.8rem;
+      color: var(--text-mid); font-size: 0.88rem;
+    }
+    .contact-detail .icon {
+      width: 36px; height: 36px;
+      background: rgba(39,52,139,0.07);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .form-card {
+      background: var(--white);
+      border-radius: 22px; padding: 2.5rem;
+      box-shadow: 0 10px 50px rgba(39,52,139,0.08);
+      border: 1px solid rgba(39,52,139,0.05);
+    }
+    .form-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.2rem; font-weight: 800;
+      color: var(--blue-dark); margin-bottom: 1.5rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block; font-size: 0.8rem;
+      font-weight: 600; color: var(--text-dark);
+      margin-bottom: 0.4rem; letter-spacing: 0.02em;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1.5px solid rgba(39,52,139,0.12);
+      border-radius: 10px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.88rem; color: var(--text-dark);
+      background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(39,52,139,0.08);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-submit {
+      width: 100%; padding: 0.95rem;
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: var(--white); border: none; border-radius: 10px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.92rem; font-weight: 700;
+      cursor: pointer; transition: all 0.25s; margin-top: 0.5rem;
+    }
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(39,52,139,0.25);
+    }
+    .form-success { display: none; text-align: center; padding: 2rem; }
+    .form-success .success-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+    .form-success h4 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.2rem; color: var(--blue-dark); margin-bottom: 0.5rem;
+    }
+    .form-success p { color: var(--text-mid); font-size: 0.88rem; }
+
+    /* ===== CALENDRIER ===== */
+    #calendrier { background: var(--section-alt); }
+    .calendrier-header { text-align: center; margin-bottom: 3.5rem; }
+    .calendrier-header .section-lead { margin: 0 auto; }
+    .phases-wrapper {
+      display: flex; gap: 0; position: relative;
+      overflow: hidden; border-radius: 18px;
+    }
+    .phase-item {
+      flex: 1; padding: 2rem 1.2rem;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.3);
+      transition: flex 0.4s ease;
+      cursor: default; position: relative;
+    }
+    .phase-item:last-child { border-right: none; }
+    .phase-item.past { background: rgba(39,52,139,0.07); }
+    .phase-item.current {
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      flex: 1.6;
+      box-shadow: inset 0 0 0 2px var(--gold);
+    }
+    .phase-item.future { background: rgba(39,52,139,0.03); }
+    .phase-num {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.5rem; font-weight: 900;
+      opacity: 0.12; line-height: 1;
+      margin-bottom: 0.5rem; display: block;
+    }
+    .phase-item.current .phase-num { opacity: 0.25; color: var(--gold); }
+    .phase-dates {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.5rem; color: var(--text-light);
+    }
+    .phase-item.current .phase-dates { color: rgba(255,255,255,0.65); }
+    .phase-name {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.95rem; font-weight: 800;
+      color: var(--blue-dark); margin-bottom: 0.5rem;
+    }
+    .phase-item.current .phase-name { color: var(--white); font-size: 1.05rem; }
+    .phase-subtitle {
+      font-size: 0.75rem; color: var(--text-mid); line-height: 1.4;
+    }
+    .phase-item.current .phase-subtitle { color: rgba(255,255,255,0.75); }
+    .phase-current-badge {
+      display: none;
+      position: absolute; top: -12px;
+      left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: var(--blue-dark);
+      font-size: 0.6rem; font-weight: 800;
+      padding: 0.2rem 0.8rem; border-radius: 50px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      white-space: nowrap;
+      font-family: 'Raleway', sans-serif;
+    }
+    .phase-item.current .phase-current-badge { display: block; }
+
+    /* ===== FINAL CTA ===== */
+    #final-cta {
+      background: linear-gradient(160deg, #f8f4ee 0%, #faf9f7 100%);
+      text-align: center;
+    }
+    .final-cta-inner { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
+    .final-cta-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; margin-top: 3rem;
+    }
+    .cta-box {
+      border-radius: 22px; padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .cta-box.public {
+      background: linear-gradient(135deg, #fdf6e9, #fdf3e0);
+      border: 2px solid rgba(212,170,72,0.25);
+    }
+    .cta-box.partner {
+      background: linear-gradient(135deg, #eef0ff, #e8ecfb);
+      border: 2px solid rgba(39,52,139,0.15);
+    }
+    .cta-box-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .cta-box h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.2rem; font-weight: 800;
+      color: var(--blue-dark); margin-bottom: 0.8rem; line-height: 1.3;
+    }
+    .cta-box p {
+      font-size: 0.88rem; color: var(--text-mid);
+      line-height: 1.6; margin-bottom: 1.5rem;
+    }
+    .newsletter-form { display: flex; gap: 0.5rem; }
+    .newsletter-form input {
+      flex: 1; padding: 0.7rem 1rem;
+      border: 1.5px solid rgba(212,170,72,0.3);
+      border-radius: 8px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.85rem; background: white;
+      outline: none; transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus { border-color: var(--gold); }
+    .newsletter-form button {
+      padding: 0.7rem 1.1rem;
+      background: var(--gold); color: var(--blue-dark);
+      border: none; border-radius: 8px;
+      font-weight: 700; font-size: 0.85rem;
+      cursor: pointer; transition: background 0.2s;
+      white-space: nowrap;
+      font-family: 'Raleway', sans-serif;
+    }
+    .newsletter-form button:hover { background: var(--gold-light); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--blue-dark); color: rgba(255,255,255,0.65);
+      padding: 3rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer-brand .nav-logo { margin-bottom: 1rem; }
+    .footer-brand p {
+      font-size: 0.82rem; line-height: 1.7; max-width: 250px;
+    }
+    .footer-socials {
+      display: flex; gap: 0.7rem; margin-top: 1.5rem;
+    }
+    .social-btn {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; text-decoration: none;
+      color: white; transition: background 0.2s;
+    }
+    .social-btn:hover { background: var(--gold); color: var(--blue-dark); }
+    .footer-col h4 {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-bottom: 1rem;
+      font-family: 'Raleway', sans-serif;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.55rem; font-size: 0.85rem; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--gold); }
+    .footer-hashtags {
+      display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem;
+    }
+    .hashtag {
+      background: rgba(212,170,72,0.1);
+      color: var(--gold);
+      padding: 0.2rem 0.6rem; border-radius: 50px;
+      font-size: 0.7rem; font-weight: 600;
+    }
+    .footer-bottom {
+      max-width: 1200px; margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      display: flex; align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem; color: rgba(255,255,255,0.35);
+      flex-wrap: wrap; gap: 0.5rem;
+    }
+    .footer-bottom strong { color: var(--gold); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.8; }
+    }
+    @keyframes scroll-bounce {
+      0%, 100% { transform: translateY(0); opacity: 1; }
+      50% { transform: translateY(6px); opacity: 0.4; }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .phases-wrapper { flex-direction: column; }
+      .phase-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); }
+      .timeline::before { left: 16px; }
+      .tl-item, .tl-item:nth-child(even) { flex-direction: row; }
+      .tl-content, .tl-item:nth-child(even) .tl-content { text-align: left; }
+      .final-cta-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(26,34,96,0.97);
+        padding: 1.5rem 2rem; gap: 1rem;
+      }
+      .nav-burger { display: flex; }
+      .chiffres-grid { grid-template-columns: 1fr 1fr; }
+      .chiffre-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .newsletter-form { flex-direction: column; }
+      .niveaux-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto 3rem; }
+      .centres-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 1.9rem; }
+      .countdown-item { padding: 0.7rem 0.9rem; min-width: 62px; }
+      .countdown-num { font-size: 1.7rem; }
+      .section-inner { padding: 3.5rem 1.2rem; }
+      .hero-logo { width: 90px; }
+    }
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  </style>
+</head>
+<body>
+<div id="page-wrapper" style="overflow-x:clip;max-width:100vw;width:100%">
+
+<!-- Scroll progress bar -->
+<div id="scroll-progress"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar" role="navigation" aria-label="Navigation principale">
+  <a href="#hero" class="nav-logo" aria-label="AGASC — Accueil">
+    <img src="assets/logos/agasc-50ans-rond.png" alt="Logo AGASC 50 ans" class="nav-logo-img" />
+    <div class="nav-logo-text">
+      AGASC
+      <span>Sport / Loisirs / Culture / Social</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#centres">Nos Centres</a></li>
+    <li><a href="#evenement">L'Événement</a></li>
+    <li><a href="#calendrier">Calendrier</a></li>
+    <li><a href="#partenaires">Partenaires</a></li>
+    <li><a href="#contact" class="nav-cta">Nous rejoindre</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero" aria-label="Bienvenue">
+  <div class="hero-bg-shapes" aria-hidden="true"></div>
+  <div class="hero-50" aria-hidden="true">50</div>
+
+  <img src="assets/logos/agasc-blanc.png" alt="Logo AGASC" class="hero-logo" />
+
+  <div class="hero-badge">1976 — 2026 · Jubilé d'or</div>
+
+  <h1 class="hero-title">
+    AGASC — <span class="gold">50 ans</span><br>Ensemble
+  </h1>
+  <p class="hero-subtitle">"Le Cœur de Saint-Laurent-du-Var bat depuis 1976"</p>
+  <div class="hero-tagline">Sport / Loisirs / Culture / Social</div>
+  <div class="hero-date">
+    📍 27 Septembre 2026 · Parc Layet, Saint-Laurent-du-Var
+  </div>
+
+  <div class="hero-btns">
+    <a href="#final-cta" class="btn-primary">Je participe à la fête</a>
+    <a href="#partenaires" class="btn-outline">Devenir Partenaire</a>
+  </div>
+
+  <div class="countdown-wrapper">
+    <p class="countdown-label">Compte à rebours jusqu'à la célébration</p>
+    <div class="countdown" id="countdown" aria-live="polite" aria-label="Compte à rebours">
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-days">--</span>
+        <span class="countdown-unit">jours</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-hours">--</span>
+        <span class="countdown-unit">heures</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-mins">--</span>
+        <span class="countdown-unit">minutes</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-num" id="cd-secs">--</span>
+        <span class="countdown-unit">secondes</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="hero-transition" aria-hidden="true"></div>
+</section>
+
+<!-- ===== CHIFFRES CLÉS ===== -->
+<section id="chiffres" aria-label="Chiffres clés">
+  <div class="chiffres-grid">
+    <div class="chiffre-item reveal">
+      <span class="chiffre-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6"/></svg></span>
+      <span class="chiffre-num" data-target="50" data-suffix=" ans">0</span>
+      <p class="chiffre-label">d'histoire et d'engagement<br>au service des Laurentins</p>
+    </div>
+    <div class="chiffre-item reveal">
+      <span class="chiffre-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span>
+      <span class="chiffre-num" data-target="8" data-suffix=" centres">0</span>
+      <p class="chiffre-label">Sport, Loisirs,<br>Culture &amp; Social</p>
+    </div>
+    <div class="chiffre-item reveal">
+      <span class="chiffre-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="chiffre-num" data-target="1000" data-suffix="+">0</span>
+      <p class="chiffre-label">adhérents laurentins<br>qui vivent l'AGASC au quotidien</p>
+    </div>
+    <div class="chiffre-item reveal">
+      <span class="chiffre-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+      <span class="chiffre-num" data-target="1" data-suffix=" ville">0</span>
+      <p class="chiffre-label">Saint-Laurent-du-Var,<br>cœur méditerranéen</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NOS CENTRES ===== -->
+<section id="centres" aria-label="Les centres de l'AGASC">
+  <div class="section-inner">
+    <div class="centres-header">
+      <span class="section-tag">Notre ADN depuis 1976</span>
+      <h2 class="section-title">Nos Centres</h2>
+      <p class="section-lead">Huit structures au service des Laurentins : sport, loisirs, culture, social et accompagnement, pour tous les âges et toutes les envies.</p>
+    </div>
+    <div class="centres-grid">
+      <div class="centre-card" data-color="culturel">
+        <img src="assets/logos/centre-culturel-rond.png" alt="Logo Centre Culturel" class="centre-logo" />
+        <h3 class="centre-name">Centre Culturel</h3>
+        <p class="centre-desc">Découverte, créativité et expression. Pratiques artistiques et manuelles dans un esprit de partage et de transmission.</p>
+      </div>
+      <div class="centre-card" data-color="danse">
+        <img src="assets/logos/maison-danse-rond.png" alt="Logo Maison de la Danse" class="centre-logo" />
+        <h3 class="centre-name">Maison de la Danse</h3>
+        <p class="centre-desc">Classique, moderne, jazz, hip-hop et bien-être corporel. Toutes disciplines, tous niveaux, tous âges.</p>
+      </div>
+      <div class="centre-card" data-color="nautique">
+        <img src="assets/logos/centre-nautique-rond.png" alt="Logo Centre Nautique" class="centre-logo" />
+        <h3 class="centre-name">Centre Nautique</h3>
+        <p class="centre-desc">Performance, glisse et plaisir aquatique. L'énergie du sport nautique au bord de la Méditerranée.</p>
+      </div>
+      <div class="centre-card" data-color="tennis">
+        <img src="assets/logos/tennis-padel-rond.png" alt="Logo Tennis Padel Club" class="centre-logo" />
+        <h3 class="centre-name">Tennis Padel Club</h3>
+        <p class="centre-desc">Passion du jeu, précision du geste et esprit de compétition. Performance, technique et fair-play.</p>
+      </div>
+      <div class="centre-card" data-color="equestre">
+        <img src="assets/logos/centre-equestre-rond.png" alt="Logo Centre Équestre" class="centre-logo" />
+        <h3 class="centre-name">Centre Équestre</h3>
+        <p class="centre-desc">Relation cavalier-cheval dans un cadre verdoyant. Apprentissage et découverte accessibles à tous.</p>
+      </div>
+      <div class="centre-card" data-color="jaquons">
+        <img src="assets/logos/jaquons-rond.png" alt="Logo Espace Loisirs des Jaquons" class="centre-logo" />
+        <h3 class="centre-name">Espace Loisirs des Jaquons</h3>
+        <p class="centre-desc">Activités sportives, créatives et sociales pour enfants, préados et adolescents, dans un cadre dynamique et fun.</p>
+      </div>
+      <div class="centre-card" data-color="gueyeurs">
+        <img src="assets/logos/gueyeurs-rond.png" alt="Logo Les Gueyeurs" class="centre-logo" />
+        <h3 class="centre-name">Les Gueyeurs</h3>
+        <p class="centre-desc">Centre social de quartier : lieu de vie, d'échange et de lien social multigénérationnel et diversifié.</p>
+      </div>
+      <div class="centre-card" data-color="aajie">
+        <img src="assets/logos/aajie-rond.png" alt="Logo AAJIE - Bureau Info Jeunes" class="centre-logo" />
+        <h3 class="centre-name">AAJIE — Bureau Info Jeunes</h3>
+        <p class="centre-desc">Orientation, emploi, formation et information jeunesse. Accompagnement, écoute et confiance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5 PILIERS ÉVÉNEMENT ===== -->
+<section id="piliers" aria-label="Les 5 piliers de la fête">
+  <div class="section-inner">
+    <div class="piliers-header">
+      <span class="section-tag">Le Village des 5 Piliers</span>
+      <h2 class="section-title">5 Univers à Explorer le Jour J</h2>
+      <p class="section-lead">Le 27 septembre, le Parc Layet se transforme en un village thématique organisé autour de cinq univers emblématiques de l'AGASC.</p>
+    </div>
+    <div class="piliers-grid">
+      <div class="pilier-card">
+        <div class="pilier-icon" aria-hidden="true">🎭</div>
+        <h3 class="pilier-name">Culture</h3>
+        <p class="pilier-sub">"Le Carrousel des Talents"</p>
+        <p class="pilier-desc">Spectacles, musique, arts plastiques et expressions créatives des talents laurentins.</p>
+      </div>
+      <div class="pilier-card">
+        <div class="pilier-icon" aria-hidden="true">⚽</div>
+        <h3 class="pilier-name">Sport</h3>
+        <p class="pilier-sub">"Le Défi 50 Minutes"</p>
+        <p class="pilier-desc">Défis sportifs pour tous les âges : dépassement, santé et vivre-ensemble.</p>
+      </div>
+      <div class="pilier-card">
+        <div class="pilier-icon" aria-hidden="true">🤝</div>
+        <h3 class="pilier-name">Social</h3>
+        <p class="pilier-sub">"Le Café des Générations"</p>
+        <p class="pilier-desc">Écoute, solidarité et liens intergénérationnels au cœur de la communauté.</p>
+      </div>
+      <div class="pilier-card">
+        <div class="pilier-icon" aria-hidden="true">📚</div>
+        <h3 class="pilier-name">Éducation</h3>
+        <p class="pilier-sub">"L'Atelier des Savoirs Partagés"</p>
+        <p class="pilier-desc">Transmission du savoir, formation et accompagnement pour l'avenir laurentin.</p>
+      </div>
+      <div class="pilier-card">
+        <div class="pilier-icon" aria-hidden="true">🏛️</div>
+        <h3 class="pilier-name">Héritage</h3>
+        <p class="pilier-sub">"Le Pavillon des Archives"</p>
+        <p class="pilier-desc">Mémoire collective et patrimoine : 50 ans d'histoire à revivre et célébrer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ÉVÉNEMENT ===== -->
+<section id="evenement" aria-label="L'événement du 27 septembre 2026">
+  <div class="section-inner">
+    <div class="evenement-header">
+      <span class="section-tag">27 Septembre 2026 — Parc Layet</span>
+      <h2 class="section-title">Une Journée Inoubliable</h2>
+      <p class="section-lead">Festive, populaire, intergénérationnelle et profondément ancrée dans l'identité laurentine.</p>
+    </div>
+
+    <div class="programme-grid">
+      <div class="programme-card">
+        <span class="programme-emoji" aria-hidden="true">🥪</span>
+        <h3 class="programme-title">Le Pan Bagnat Géant au Parc Layet</h3>
+        <p class="programme-desc">Symbole identitaire par excellence, le pan bagnat géant rassemblera tous les Laurentins autour d'un moment convivial et méditerranéen.</p>
+      </div>
+      <div class="programme-card">
+        <span class="programme-emoji" aria-hidden="true">🏘️</span>
+        <h3 class="programme-title">Le Village des 5 Piliers</h3>
+        <p class="programme-desc">Stands thématiques, scènes de spectacles, ateliers et animations dédiés à chaque univers de l'AGASC.</p>
+      </div>
+      <div class="programme-card">
+        <span class="programme-emoji" aria-hidden="true">🏃</span>
+        <h3 class="programme-title">Les Défis Intergénérationnels "50 × 1km"</h3>
+        <p class="programme-desc">50 équipes mixtes, 50 kilomètres partagés entre enfants, parents et grands-parents.</p>
+      </div>
+      <div class="programme-card">
+        <span class="programme-emoji" aria-hidden="true">⏳</span>
+        <h3 class="programme-title">La Capsule Temporelle Laurentine</h3>
+        <p class="programme-desc">Cérémonie officielle où les Laurentins d'aujourd'hui confient un message aux Laurentins de demain.</p>
+      </div>
+      <div class="programme-card">
+        <span class="programme-emoji" aria-hidden="true">✨</span>
+        <h3 class="programme-title">Le Gala des 50 Ans</h3>
+        <p class="programme-desc">Soirée de gala avec remise des Trophées AGASC 50, spectacle de clôture et moments d'exception.</p>
+      </div>
+      <div class="programme-card">
+        <span class="programme-emoji" aria-hidden="true">🎊</span>
+        <h3 class="programme-title">Animations &amp; Surprises</h3>
+        <p class="programme-desc">Expositions, archives vivantes, concerts, street art et animations pensées pour tous les âges.</p>
+      </div>
+    </div>
+
+    <h3 class="timeline-title">Le Programme de la Journée</h3>
+    <div class="timeline" aria-label="Déroulement de la journée">
+      <div class="tl-item">
+        <div class="tl-content">
+          <div class="tl-time">10h00</div>
+          <div class="tl-name">Ouverture du Village des 5 Piliers</div>
+        </div>
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div style="flex:1"></div>
+      </div>
+      <div class="tl-item">
+        <div style="flex:1"></div>
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-content">
+          <div class="tl-time">12h00</div>
+          <div class="tl-name">Le Pan Bagnat Géant — Déjeuner populaire</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-content">
+          <div class="tl-time">14h30</div>
+          <div class="tl-name">Défis Intergénérationnels "50 × 1km"</div>
+        </div>
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div style="flex:1"></div>
+      </div>
+      <div class="tl-item">
+        <div style="flex:1"></div>
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div class="tl-content">
+          <div class="tl-time">17h00</div>
+          <div class="tl-name">Cérémonie de la Capsule Temporelle</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-content">
+          <div class="tl-time">20h00</div>
+          <div class="tl-name">Gala des 50 Ans &amp; Trophées AGASC</div>
+        </div>
+        <div class="tl-dot" aria-hidden="true"></div>
+        <div style="flex:1"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARTENAIRES ===== -->
+<section id="partenaires" aria-label="Devenir partenaire">
+  <div class="section-inner">
+    <div class="partenaires-header reveal">
+      <span class="section-tag" style="color:var(--gold)">Opportunité de Partenariat</span>
+      <h2 class="section-title">Rejoignez l'Aventure des 50 Ans</h2>
+      <p class="section-lead">Ensemble, nous sommes plus forts. Associez votre image à l'événement populaire et incontournable de Saint-Laurent-du-Var en 2026.</p>
+    </div>
+
+    <div class="roi-grid">
+      <div class="roi-item reveal">
+        <span class="roi-icon" aria-hidden="true">📣</span>
+        <div class="roi-text">
+          <strong>Visibilité maximale</strong>
+          Votre logo sur tous nos supports : affiches, flyers, bannières et programmes.
+        </div>
+      </div>
+      <div class="roi-item reveal">
+        <span class="roi-icon" aria-hidden="true">👥</span>
+        <div class="roi-text">
+          <strong>Impact territorial fort</strong>
+          Visibilité directe auprès de milliers de Laurentins et de leurs familles.
+        </div>
+      </div>
+      <div class="roi-item reveal">
+        <span class="roi-icon" aria-hidden="true">💎</span>
+        <div class="roi-text">
+          <strong>Image positive &amp; populaire</strong>
+          Association à une marque ancrée, aimée et reconnue depuis 50 ans.
+        </div>
+      </div>
+      <div class="roi-item reveal">
+        <span class="roi-icon" aria-hidden="true">🎪</span>
+        <div class="roi-text">
+          <strong>Présence physique</strong>
+          Stands, scène, bannières et mentions lors de la cérémonie officielle.
+        </div>
+      </div>
+      <div class="roi-item reveal">
+        <span class="roi-icon" aria-hidden="true">📱</span>
+        <div class="roi-text">
+          <strong>Couverture digitale</strong>
+          Mentions et contenus sur nos réseaux sociaux, site web et newsletter.
+        </div>
+      </div>
+      <div class="roi-item reveal">
+        <span class="roi-icon" aria-hidden="true">📰</span>
+        <div class="roi-text">
+          <strong>Relations presse</strong>
+          Couverture presse locale et régionale avec citation de nos partenaires.
+        </div>
+      </div>
+    </div>
+
+    <h3 class="niveaux-title">Choisissez votre niveau d'engagement</h3>
+    <div class="niveaux-grid">
+      <div class="niveau-card bronze reveal">
+        <span class="niveau-badge" aria-hidden="true">🥉</span>
+        <div class="niveau-name">Partenaire Associé</div>
+        <div class="niveau-subtitle">Entrée de gamme</div>
+        <ul class="niveau-features">
+          <li>Logo sur le site et supports print</li>
+          <li>Mention sur les réseaux sociaux</li>
+          <li>Invitation à la journée événement</li>
+          <li>Certificat de partenariat officiel</li>
+        </ul>
+      </div>
+      <div class="niveau-card silver reveal">
+        <span class="niveau-badge" aria-hidden="true">🥈</span>
+        <div class="niveau-name">Partenaire Officiel</div>
+        <div class="niveau-subtitle">Engagement fort</div>
+        <ul class="niveau-features">
+          <li>Tout le niveau Associé +</li>
+          <li>Stand dédié au Village des Piliers</li>
+          <li>Bannières et affichage event</li>
+          <li>Mention lors de la cérémonie officielle</li>
+          <li>Contenu dédié sur nos réseaux</li>
+        </ul>
+      </div>
+      <div class="niveau-card gold-tier reveal">
+        <div class="niveau-popular">Recommandé</div>
+        <span class="niveau-badge" aria-hidden="true">🥇</span>
+        <div class="niveau-name">Partenaire Majeur</div>
+        <div class="niveau-subtitle">Mécène &amp; Prestige</div>
+        <ul class="niveau-features">
+          <li>Tout le niveau Officiel +</li>
+          <li>Co-branding sur tous supports</li>
+          <li>Espace VIP au Gala des 50 Ans</li>
+          <li>Trophée AGASC partenaire d'honneur</li>
+          <li>Capsule temporelle : votre message</li>
+          <li>Couverture presse dédiée</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="partenaires-cta">
+      <a href="#contact" class="btn-primary">Nous contacter</a>
+      <a href="#contact" class="btn-outline">Télécharger le Dossier Partenaire</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORMULAIRE PARTENAIRE ===== -->
+<section id="contact" aria-label="Formulaire de contact partenaire">
+  <div class="section-inner">
+    <div class="contact-wrapper">
+      <div class="contact-info reveal">
+        <span class="section-tag">Contact</span>
+        <h3>Parlons de votre partenariat</h3>
+        <p>Vous souhaitez rejoindre l'aventure des 50 ans de l'AGASC ? Notre équipe vous répond dans les 48 heures pour construire ensemble une collaboration à la hauteur de votre ambition.</p>
+        <div class="contact-detail">
+          <span class="icon" aria-hidden="true">📍</span>
+          <span>57 avenue des Pignatières, 06700 Saint-Laurent-du-Var</span>
+        </div>
+        <div class="contact-detail">
+          <span class="icon" aria-hidden="true">📧</span>
+          <span>siege@agasc.fr</span>
+        </div>
+        <div class="contact-detail">
+          <span class="icon" aria-hidden="true">📞</span>
+          <span>04 93 31 50 18</span>
+        </div>
+        <div class="contact-detail">
+          <span class="icon" aria-hidden="true">🌐</span>
+          <span>agasc.fr</span>
+        </div>
+      </div>
+
+      <div class="form-card reveal">
+        <div id="form-content">
+          <h4 class="form-title">Formulaire d'intérêt partenaire</h4>
+          <form id="partner-form" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="f-prenom">Prénom *</label>
+                <input type="text" id="f-prenom" name="prenom" placeholder="Jean" required autocomplete="given-name" />
+              </div>
+              <div class="form-group">
+                <label for="f-nom">Nom *</label>
+                <input type="text" id="f-nom" name="nom" placeholder="Dupont" required autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="f-entreprise">Entreprise / Organisation *</label>
+              <input type="text" id="f-entreprise" name="entreprise" placeholder="Ma Société SAS" required autocomplete="organization" />
+            </div>
+            <div class="form-group">
+              <label for="f-email">Email professionnel *</label>
+              <input type="email" id="f-email" name="email" placeholder="jean@masociete.fr" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="f-niveau">Niveau de partenariat souhaité *</label>
+              <select id="f-niveau" name="niveau" required>
+                <option value="">— Choisissez un niveau —</option>
+                <option value="associe">Partenaire Associé</option>
+                <option value="officiel">Partenaire Officiel</option>
+                <option value="majeur">Partenaire Majeur / Mécène</option>
+                <option value="autre">Je souhaite en discuter</option>
+              </select>
+            </div>
+            <button type="submit" class="form-submit">Envoyer ma demande →</button>
+          </form>
+        </div>
+        <div class="form-success" id="form-success" aria-live="polite">
+          <span class="success-icon" aria-hidden="true">✓</span>
+          <h4>Merci pour votre intérêt !</h4>
+          <p>Notre équipe reviendra vers vous dans les 48 heures pour construire ensemble votre partenariat AGASC 50 ans.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALENDRIER ===== -->
+<section id="calendrier" aria-label="Calendrier de communication">
+  <div class="section-inner">
+    <div class="calendrier-header reveal">
+      <span class="section-tag">Campagne 2026</span>
+      <h2 class="section-title">Calendrier de Communication</h2>
+      <p class="section-lead">Cinq phases de mobilisation pour bâtir l'enthousiasme et fédérer la communauté laurentine.</p>
+    </div>
+    <div class="phases-wrapper" role="list" aria-label="Phases de la campagne">
+      <div class="phase-item past" role="listitem">
+        <span class="phase-num" aria-hidden="true">1</span>
+        <div class="phase-dates">Jan – Mars 2026</div>
+        <div class="phase-name">Lancement &amp; Héritage</div>
+        <div class="phase-subtitle">Réveil mémoriel, archivage participatif, premières communications</div>
+      </div>
+      <div class="phase-item current" role="listitem" aria-current="true">
+        <div class="phase-current-badge">Nous y sommes</div>
+        <span class="phase-num" aria-hidden="true">2</span>
+        <div class="phase-dates">Avr – Mai 2026</div>
+        <div class="phase-name">Valorisation des Pôles</div>
+        <div class="phase-subtitle">Mise en lumière de chaque centre, témoignages, ouverture partenariats</div>
+      </div>
+      <div class="phase-item future" role="listitem">
+        <span class="phase-num" aria-hidden="true">3</span>
+        <div class="phase-dates">Juin 2026</div>
+        <div class="phase-name">Jalon Symbolique</div>
+        <div class="phase-subtitle">Mi-parcours, événement intermédiaire, compte à rebours</div>
+      </div>
+      <div class="phase-item future" role="listitem">
+        <span class="phase-num" aria-hidden="true">4</span>
+        <div class="phase-dates">Juil – Août 2026</div>
+        <div class="phase-name">L'Été de l'Attente</div>
+        <div class="phase-subtitle">Montée en puissance, teasers, inscriptions</div>
+      </div>
+      <div class="phase-item future" role="listitem">
+        <span class="phase-num" aria-hidden="true">5</span>
+        <div class="phase-dates">Septembre 2026</div>
+        <div class="phase-name">La Célébration</div>
+        <div class="phase-subtitle">Programme final, presse, live social media</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section id="final-cta" aria-label="Rejoindre l'aventure">
+  <div class="final-cta-inner">
+    <span class="section-tag" style="display:block;text-align:center">Ensemble, tout est possible</span>
+    <h2 class="section-title" style="text-align:center;font-size:clamp(1.9rem,4vw,3rem)">Soyez au cœur<br>de cette histoire</h2>
+    <p class="section-lead" style="margin:1rem auto 0;text-align:center">Que vous soyez Laurentin de cœur ou partenaire ambitieux, votre place est réservée dans cette aventure.</p>
+    <div class="final-cta-grid">
+      <div class="cta-box public reveal">
+        <span class="cta-box-icon" aria-hidden="true">🎉</span>
+        <h3>Rejoignez la fête du siècle laurentin !</h3>
+        <p>Inscrivez-vous à notre newsletter pour ne rien manquer : programme, surprises et actualités des 50 ans.</p>
+        <div class="newsletter-form">
+          <label for="nl-email" class="sr-only">Votre email</label>
+          <input type="email" id="nl-email" placeholder="votre@email.fr" aria-label="Votre adresse email" />
+          <button type="button" onclick="handleNewsletter()">S'inscrire</button>
+        </div>
+      </div>
+      <div class="cta-box partner reveal">
+        <span class="cta-box-icon" aria-hidden="true">🏆</span>
+        <h3>Votre entreprise mérite d'être au cœur de cette histoire</h3>
+        <p>Investissez dans l'avenir de votre territoire. Un partenariat AGASC 50 ans, c'est du ROI et de l'impact durable.</p>
+        <a href="#partenaires" class="btn-primary" style="display:inline-flex">Devenir Partenaire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer aria-label="Pied de page">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo" aria-label="AGASC — Retour en haut">
+        <img src="assets/logos/agasc-50ans.png" alt="Logo AGASC 50 ans" class="nav-logo-img" style="height:40px" />
+        <div class="nav-logo-text">
+          AGASC
+          <span>Sport / Loisirs / Culture / Social</span>
+        </div>
+      </a>
+      <p>Association de Gestion et d'Animation Socio-Culturelle de Saint-Laurent-du-Var. Depuis 1976, le lien social et culturel au cœur des Alpes-Maritimes.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/agasc.officiel" class="social-btn" aria-label="Facebook AGASC" target="_blank" rel="noopener">f</a>
+        <a href="https://www.instagram.com/agascofficiel" class="social-btn" aria-label="Instagram AGASC" target="_blank" rel="noopener">ig</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#centres">Nos Centres</a></li>
+        <li><a href="#piliers">Les 5 Piliers</a></li>
+        <li><a href="#evenement">L'Événement</a></li>
+        <li><a href="#partenaires">Partenaires</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Infos pratiques</h4>
+      <ul>
+        <li><a href="#evenement">27 Septembre 2026</a></li>
+        <li><a href="#evenement">Parc Layet</a></li>
+        <li><a href="#contact">06700 Saint-Laurent-du-Var</a></li>
+        <li><a href="tel:0493315018">04 93 31 50 18</a></li>
+        <li><a href="mailto:siege@agasc.fr">siege@agasc.fr</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Suivez-nous</h4>
+      <div class="footer-hashtags">
+        <span class="hashtag">#AGASC50ans</span>
+        <span class="hashtag">#LaurentinsAGASC</span>
+        <span class="hashtag">#LaVieEnsemble</span>
+        <span class="hashtag">#SaintLaurentduVar</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 <strong>AGASC</strong> — Association de Gestion et d'Animation Socio-Culturelle · Saint-Laurent-du-Var</span>
+    <span>Fait avec ❤️ pour les Laurentins</span>
+  </div>
+</footer>
+
+<script>
+/* ===== COUNTDOWN ===== */
+(function() {
+  const target = new Date('2026-09-27T10:00:00');
+  function update() {
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML = '<div class="countdown-item"><span class="countdown-num" style="font-size:1.5rem">C\'est le jour J !</span></div>';
+      return;
+    }
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+    document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+  }
+  update();
+  setInterval(update, 1000);
+})();
+
+/* ===== NAVBAR ===== */
+(function() {
+  const nav = document.getElementById('navbar');
+  const burger = document.getElementById('nav-burger');
+  const links = document.getElementById('nav-links');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+  burger.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+
+/* ===== SCROLL PROGRESS ===== */
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('scroll-progress');
+  const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  el.style.width = scrolled + '%';
+}, { passive: true });
+
+/* ===== COUNTER ANIMATION ===== */
+(function() {
+  const items = document.querySelectorAll('[data-target]');
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  let observed = new Set();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !observed.has(entry.target)) {
+        observed.add(entry.target);
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const duration = 2000;
+        const start = performance.now();
+        const step = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const val = Math.floor(easeOut(progress) * target);
+          el.textContent = val.toLocaleString('fr-FR') + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }
+    });
+  }, { threshold: 0.5 });
+  items.forEach(el => io.observe(el));
+})();
+
+/* ===== REVEAL ON SCROLL ===== */
+(function() {
+  const revealEls = document.querySelectorAll('.reveal, .pilier-card, .programme-card, .centre-card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const siblings = el.parentElement.querySelectorAll('.pilier-card, .programme-card, .centre-card');
+        let delay = 0;
+        siblings.forEach((s, idx) => { if (s === el) delay = idx * 70; });
+        setTimeout(() => el.classList.add('revealed'), delay);
+        io.unobserve(el);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  revealEls.forEach(el => io.observe(el));
+})();
+
+/* ===== PARTNER FORM ===== */
+document.getElementById('partner-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const required = this.querySelectorAll('[required]');
+  let valid = true;
+  required.forEach(f => {
+    f.style.borderColor = '';
+    if (!f.value.trim() || (f.type === 'email' && !/\S+@\S+\.\S+/.test(f.value))) {
+      f.style.borderColor = '#c9604a';
+      valid = false;
+    }
+  });
+  if (!valid) return;
+  document.getElementById('form-content').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+});
+
+/* ===== NEWSLETTER ===== */
+function handleNewsletter() {
+  const input = document.getElementById('nl-email');
+  if (!input.value || !/\S+@\S+\.\S+/.test(input.value)) {
+    input.style.borderColor = '#c9604a';
+    input.focus();
+    return;
+  }
+  input.style.borderColor = '';
+  const btn = input.nextElementSibling;
+  btn.textContent = '✓ Inscrit !';
+  btn.style.background = '#4caf50';
+  btn.style.color = 'white';
+  input.disabled = true;
+  btn.disabled = true;
+}
+
+/* ===== PARALLAX HERO ===== */
+window.addEventListener('scroll', () => {
+  const scroll = window.scrollY;
+  if (scroll < window.innerHeight) {
+    const bg50 = document.querySelector('.hero-50');
+    if (bg50) bg50.style.transform = 'translate(-50%, calc(-50% + ' + (scroll * 0.12) + 'px))';
+  }
+}, { passive: true });
+</script>
+</div><!-- /page-wrapper -->
+</body>
+</html>
