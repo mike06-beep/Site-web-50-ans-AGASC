@@ -97,6 +97,11 @@
     ]
   }
   </script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/agasc-50ans-rond.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logos/agasc-50ans-rond.png" />
+  <link rel="apple-touch-icon" href="assets/logos/agasc-50ans-rond.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
@@ -1597,7 +1602,8 @@
       <div class="form-card reveal">
         <div id="form-content">
           <h4 class="form-title">Formulaire d'intérêt partenaire</h4>
-          <form id="partner-form" novalidate>
+          <form id="partner-form" name="partenariat" data-netlify="true" novalidate>
+            <input type="hidden" name="form-name" value="partenariat" />
             <div class="form-grid">
               <div class="form-group">
                 <label for="f-prenom">Prénom *</label>
@@ -1694,11 +1700,12 @@
         <span class="cta-box-icon" aria-hidden="true">🎉</span>
         <h3>Rejoignez la fête du siècle laurentin !</h3>
         <p>Inscrivez-vous à notre newsletter pour ne rien manquer : programme, surprises et actualités des 50 ans.</p>
-        <div class="newsletter-form">
+        <form class="newsletter-form" name="newsletter" data-netlify="true" onsubmit="handleNewsletter(event)">
+          <input type="hidden" name="form-name" value="newsletter" />
           <label for="nl-email" class="sr-only">Votre email</label>
-          <input type="email" id="nl-email" placeholder="votre@email.fr" aria-label="Votre adresse email" />
-          <button type="button" onclick="handleNewsletter()">S'inscrire</button>
-        </div>
+          <input type="email" id="nl-email" name="email" placeholder="votre@email.fr" aria-label="Votre adresse email" required />
+          <button type="submit">S'inscrire</button>
+        </form>
       </div>
       <div class="cta-box partner reveal">
         <span class="cta-box-icon" aria-hidden="true">🏆</span>
@@ -1881,12 +1888,19 @@ document.getElementById('partner-form').addEventListener('submit', function(e) {
     }
   });
   if (!valid) return;
-  document.getElementById('form-content').style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(new FormData(this)).toString()
+  }).finally(() => {
+    document.getElementById('form-content').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  });
 });
 
 /* ===== NEWSLETTER ===== */
-function handleNewsletter() {
+function handleNewsletter(e) {
+  e.preventDefault();
   const input = document.getElementById('nl-email');
   if (!input.value || !/\S+@\S+\.\S+/.test(input.value)) {
     input.style.borderColor = '#c9604a';
@@ -1894,12 +1908,18 @@ function handleNewsletter() {
     return;
   }
   input.style.borderColor = '';
-  const btn = input.nextElementSibling;
-  btn.textContent = '✓ Inscrit !';
-  btn.style.background = '#4caf50';
-  btn.style.color = 'white';
-  input.disabled = true;
-  btn.disabled = true;
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ 'form-name': 'newsletter', 'email': input.value }).toString()
+  }).finally(() => {
+    const btn = input.nextElementSibling;
+    btn.textContent = '✓ Inscrit !';
+    btn.style.background = '#4caf50';
+    btn.style.color = 'white';
+    input.disabled = true;
+    btn.disabled = true;
+  });
 }
 
 /* ===== PARALLAX HERO ===== */
