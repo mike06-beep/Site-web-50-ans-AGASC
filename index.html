@@ -288,7 +288,13 @@
     /* ===== CONFETTI ===== */
     #confetti-canvas {
       position: absolute; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 6;
+      pointer-events: none; z-index: 2;
+    }
+    /* Textes hero toujours au-dessus du canvas confetti */
+    #hero .hero-logo, #hero .hero-badge, #hero .hero-title,
+    #hero .hero-subtitle, #hero .hero-tagline, #hero .hero-date,
+    #hero .hero-btns, #hero .countdown-wrapper {
+      position: relative; z-index: 3;
     }
 
     /* ===== HERO ===== */
@@ -2069,22 +2075,29 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-/* ===== CONFETTI / FEUX D'ARTIFICE ===== */
+/* ===== CONFETTI PHOTO-RÉALISTE ===== */
 (function() {
-  if (window.innerWidth < 769) return; // desktop only
+  if (window.innerWidth < 769) return;
 
   const canvas = document.getElementById('confetti-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  // Bleu foncé + doré brillant uniquement
-  const COLORS = [
-    '#0d1640','#1a2460','#27348b','#162070','#1e3070',
-    '#e8bb3f','#ffd700','#f5c842','#ffcc00','#d4a520'
+  // Palettes dorées et bleu foncé avec dégradé brillant [ombre, base, reflet, spéculaire]
+  const PALETTES = [
+    { k:'gold', s:['#5a3a00','#b8860b','#ffd700','#fff3a0'] },
+    { k:'gold', s:['#6b4800','#c8960c','#ffe033','#fffce0'] },
+    { k:'gold', s:['#7a5200','#d4a800','#ffcc00','#fff8cc'] },
+    { k:'gold', s:['#4a3000','#a07800','#f5c842','#fff0b0'] },
+    { k:'blue', s:['#020714','#0a1232','#1e2d80','#4a60c0'] },
+    { k:'blue', s:['#030a1a','#0d1640','#27348b','#5a70c8'] },
+    { k:'blue', s:['#040c20','#162070','#2e40a8','#6880d8'] },
+    { k:'blue', s:['#050f28','#1a2870','#3050b0','#7090e0'] },
   ];
+
   let particles = [];
   let animId    = null;
-  let running   = false; // true pendant toute la durée de l'animation
+  let running   = false;
 
   function resize() {
     canvas.width  = canvas.offsetWidth;
@@ -2093,50 +2106,88 @@ window.addEventListener('scroll', () => {
   resize();
   window.addEventListener('resize', resize, { passive: true });
 
-  function spawnSide(fromLeft) {
-    const cw   = canvas.width;
-    const ch   = canvas.height;
-    const dirX = fromLeft ? 1 : -1;
-    const ox   = fromLeft ? 0 : cw; // part du bord gauche ou droit
+  function spawnCannon(fromLeft) {
+    const cw = canvas.width;
+    const ch = canvas.height;
+    // Canon caché dans l'ombre en bas, rapproché du centre
+    const ox = fromLeft ? cw * 0.26 : cw * 0.74;
+    const oy = ch * 0.92;
 
-    for (let i = 0; i < 42; i++) {
-      const isLine = Math.random() < 0.3;
-      // Vitesse horizontale modérée → s'arrête avant le centre du texte
-      // Avec drag 0.987, max déplacement ≈ vx/0.013 — pour vx=5 → ~385px, vx=8 → ~615px
-      const vx   = dirX * (4 + Math.random() * 4.5);
-      // Légère composante verticale montante puis chute lente
-      const vy   = -(0.4 + Math.random() * 2.2);
+    for (let i = 0; i < 32; i++) {
+      const pal   = PALETTES[Math.floor(Math.random() * PALETTES.length)];
+      const rnd   = Math.random();
+      let w, h, shape;
+      if (rnd < 0.50) {
+        // Grand confetti paysage
+        w = 32 + Math.random() * 26; h = 13 + Math.random() * 11; shape = 'rect';
+      } else if (rnd < 0.78) {
+        // Confetti portrait
+        w = 13 + Math.random() * 10; h = 30 + Math.random() * 22; shape = 'rect';
+      } else {
+        // Serpentin étroit et long
+        w = 4  + Math.random() * 3;  h = 55 + Math.random() * 35; shape = 'strip';
+      }
+      // Vitesse : vers le haut, légèrement écarté vers l'extérieur
+      const spreadOut = fromLeft ? -(Math.random() * 2.5) : (Math.random() * 2.5);
+      const vx = spreadOut + (Math.random() - 0.5) * 3;
+      const vy = -(8 + Math.random() * 8); // forte poussée vers le haut
       particles.push({
-        x:       ox,
-        y:       ch * (0.42 + Math.random() * 0.32), // réparti sur la hauteur du hero
-        vx,
-        vy,
-        color:   COLORS[Math.floor(Math.random() * COLORS.length)],
-        alpha:   1,
-        rot:     Math.random() * Math.PI * 2,
-        rotV:    (Math.random() - 0.5) * 0.14,
-        w:       isLine ? 4 + Math.random() * 4     : 18 + Math.random() * 16,
-        h:       isLine ? 34 + Math.random() * 26   : 8  + Math.random() * 9,
-        gravity: 0.024 + Math.random() * 0.018, // très faible → vol long
-        drag:    0.986 + Math.random() * 0.007, // frein fort → s'arrête avant le centre
-        life:    0,
-        maxLife: 310 + Math.floor(Math.random() * 90) // ~5.2–6.7 s à 60fps
+        x: ox + (Math.random() - 0.5) * 50,
+        y: oy,
+        vx, vy, pal, shape, w, h,
+        alpha: 0, // démarre invisible → émergence de l'ombre
+        rot:   Math.random() * Math.PI * 2,
+        rotV:  (Math.random() - 0.5) * 0.18,
+        gravity: 0.036 + Math.random() * 0.022,
+        drag:    0.993 + Math.random() * 0.005,
+        life: 0,
+        maxLife: 320 + Math.floor(Math.random() * 100)
       });
     }
   }
 
+  function drawParticle(p) {
+    ctx.save();
+    ctx.globalAlpha = p.alpha;
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+
+    // Dégradé brillant simulant le reflet de la feuille
+    const g = ctx.createLinearGradient(-p.w / 2, -p.h / 2, p.w / 2, p.h / 2);
+    g.addColorStop(0,    p.pal.s[0]);
+    g.addColorStop(0.30, p.pal.s[1]);
+    g.addColorStop(0.65, p.pal.s[2]);
+    g.addColorStop(1,    p.pal.s[3]);
+
+    // Ombre portée → profondeur
+    ctx.shadowColor    = 'rgba(0,0,0,0.45)';
+    ctx.shadowBlur     = 5;
+    ctx.shadowOffsetX  = 2;
+    ctx.shadowOffsetY  = 2;
+    ctx.fillStyle = g;
+    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+
+    // Reflet spéculaire (coin supérieur gauche)
+    ctx.shadowBlur = 0; ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
+    ctx.globalAlpha = p.alpha * (p.pal.k === 'gold' ? 0.60 : 0.40);
+    ctx.fillStyle   = p.pal.k === 'gold' ? 'rgba(255,255,200,0.75)' : 'rgba(160,200,255,0.55)';
+    ctx.fillRect(-p.w / 2, -p.h / 2, p.w * 0.38, p.h * 0.38);
+
+    ctx.restore();
+  }
+
   function fire() {
-    if (running) return; // attend la fin de l'animation précédente
+    if (running) return;
     running = true;
     particles = [];
-    spawnSide(true);  // bord gauche → droite
-    spawnSide(false); // bord droit  → gauche
+    spawnCannon(true);
+    spawnCannon(false);
     animate();
   }
 
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles = particles.filter(p => p.life < p.maxLife && p.alpha > 0.01);
+    particles = particles.filter(p => p.life < p.maxLife && p.alpha > 0.005);
     particles.forEach(p => {
       p.life++;
       p.x   += p.vx;
@@ -2145,29 +2196,23 @@ window.addEventListener('scroll', () => {
       p.vx  *= p.drag;
       p.vy  *= p.drag;
       p.rot += p.rotV;
+      // Émergence rapide de l'ombre (10 premières frames)
+      if (p.life <= 10) p.alpha = p.life / 10;
       // Fondu sur les 30 derniers % de vie
-      if (p.life > p.maxLife * 0.70) {
+      else if (p.life > p.maxLife * 0.70)
         p.alpha = 1 - (p.life - p.maxLife * 0.70) / (p.maxLife * 0.30);
-      }
-      ctx.save();
-      ctx.globalAlpha = p.alpha;
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-      ctx.restore();
+      else p.alpha = 1;
+      drawParticle(p);
     });
     if (particles.length > 0) {
       animId = requestAnimationFrame(animate);
     } else {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       animId  = null;
-      running = false; // prêt pour la prochaine relance
+      running = false;
     }
   }
 
-  // Déclenche au premier scroll > seuil ; relance seulement quand l'anim est terminée
-  // L'animation ne s'interrompt pas si on remonte (running reste true)
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40 && !running) fire();
   }, { passive: true });
