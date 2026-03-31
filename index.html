@@ -918,6 +918,75 @@
       flex-wrap: wrap; gap: 0.5rem;
     }
     .footer-bottom strong { color: var(--gold); }
+    .footer-legal-links { margin-top: 0.6rem; display: flex; gap: 1rem; flex-wrap: wrap; width: 100%; }
+    .footer-legal-links button {
+      background: none; border: none; color: rgba(255,255,255,0.35);
+      font-size: 0.75rem; cursor: pointer; padding: 0;
+      font-family: 'Roboto', sans-serif; text-decoration: underline; transition: color 0.2s;
+    }
+    .footer-legal-links button:hover { color: var(--gold); }
+
+    /* ===== COOKIE BANNER ===== */
+    #cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 10000;
+      background: rgba(26, 34, 96, 0.97); backdrop-filter: blur(10px);
+      padding: 1.2rem 2rem; display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      border-top: 2px solid var(--gold); box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+      transform: translateY(0); transition: transform 0.4s ease;
+    }
+    #cookie-banner.hidden { transform: translateY(110%); }
+    #cookie-banner p { color: rgba(255,255,255,0.85); font-size: 0.85rem; flex: 1; min-width: 200px; line-height: 1.5; }
+    #cookie-banner p button.cookie-link { background: none; border: none; color: var(--gold); text-decoration: underline; cursor: pointer; font-size: 0.85rem; padding: 0; font-family: inherit; }
+    .cookie-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .cookie-btn-accept {
+      background: var(--gold); color: var(--blue-dark); border: none;
+      padding: 0.5rem 1.2rem; border-radius: 50px;
+      font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 0.8rem;
+      cursor: pointer; white-space: nowrap; transition: background 0.2s;
+    }
+    .cookie-btn-accept:hover { background: var(--gold-light); }
+    .cookie-btn-refuse {
+      background: transparent; color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.2); padding: 0.5rem 1.2rem;
+      border-radius: 50px; font-family: 'Raleway', sans-serif; font-weight: 600;
+      font-size: 0.8rem; cursor: pointer; white-space: nowrap; transition: all 0.2s;
+    }
+    .cookie-btn-refuse:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+    /* ===== LEGAL MODALS ===== */
+    .legal-overlay {
+      position: fixed; inset: 0; z-index: 20000;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center; padding: 1rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .legal-overlay.open { opacity: 1; pointer-events: all; }
+    .legal-modal {
+      background: white; border-radius: 12px; max-width: 760px; width: 100%;
+      max-height: 85vh; overflow-y: auto; padding: 2.5rem; position: relative;
+      transform: translateY(20px); transition: transform 0.3s;
+    }
+    .legal-overlay.open .legal-modal { transform: translateY(0); }
+    .legal-modal h2 {
+      font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 1.4rem;
+      color: var(--blue); margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 2px solid var(--gold);
+    }
+    .legal-modal h3 {
+      font-family: 'Raleway', sans-serif; font-weight: 700;
+      color: var(--blue); font-size: 0.95rem; margin: 1.5rem 0 0.4rem;
+    }
+    .legal-modal p, .legal-modal li { font-size: 0.88rem; line-height: 1.7; color: #444; margin-bottom: 0.4rem; }
+    .legal-modal ul { padding-left: 1.2rem; margin-bottom: 0.5rem; }
+    .legal-modal a { color: var(--blue); }
+    .legal-close {
+      position: absolute; top: 1rem; right: 1rem; background: #f0f2fb; border: none;
+      width: 32px; height: 32px; border-radius: 50%; font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue-dark); transition: background 0.2s;
+    }
+    .legal-close:hover { background: var(--gold); color: white; }
 
     /* ===== ANIMATIONS ===== */
     @keyframes fade-up {
@@ -1556,6 +1625,11 @@
   <div class="footer-bottom">
     <span>© 2026 <strong>AGASC</strong> — Association de Gestion et d'Animation Socio-Culturelle · Saint-Laurent-du-Var</span>
     <span>Fait avec ❤️ pour les Laurentins</span>
+    <div class="footer-legal-links">
+      <button onclick="openLegalModal('modal-mentions')">Mentions légales</button>
+      <button onclick="openLegalModal('modal-confidentialite')">Politique de confidentialité</button>
+      <button onclick="openLegalModal('modal-cookies')">Politique des cookies</button>
+    </div>
   </div>
 </footer>
 
@@ -1699,5 +1773,169 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 </script>
 </div><!-- /page-wrapper -->
+
+<!-- ===== BANDEAU COOKIES ===== -->
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Gestion des cookies">
+  <p>
+    Ce site utilise des cookies à des fins d'analyse de navigation et d'amélioration de l'expérience utilisateur.
+    En cliquant sur « Accepter », vous consentez à leur utilisation. Vous pouvez aussi
+    <button class="cookie-link" onclick="openLegalModal('modal-cookies')">consulter notre politique des cookies</button>.
+  </p>
+  <div class="cookie-btns">
+    <button class="cookie-btn-accept" onclick="setCookieChoice('accepted')">Accepter</button>
+    <button class="cookie-btn-refuse" onclick="setCookieChoice('refused')">Refuser</button>
+  </div>
+</div>
+
+<!-- ===== MODAL MENTIONS LÉGALES ===== -->
+<div class="legal-overlay" id="modal-mentions" role="dialog" aria-modal="true" aria-label="Mentions légales" onclick="closeLegalModal('modal-mentions', event)">
+  <div class="legal-modal">
+    <button class="legal-close" onclick="closeLegalModal('modal-mentions')" aria-label="Fermer">✕</button>
+    <h2>Mentions légales</h2>
+
+    <h3>Éditeur du site</h3>
+    <p><strong>Association AGASC</strong> — Association de Gestion et d'Animation Socio-Culturelle de Saint-Laurent-du-Var<br>
+    57 Avenue des Pignatières – 06700 Saint-Laurent-du-Var (France)<br>
+    Déclarée en sous-préfecture de Grasse le 18 décembre 1976<br>
+    N° RNA : W061001882 — N° SIREN : 309 859 056<br>
+    Tél. : <a href="tel:0493315018">04 93 31 50 18</a><br>
+    E-mail : <a href="mailto:siege@agasc.fr">siege@agasc.fr</a></p>
+
+    <h3>Directeur de la publication</h3>
+    <p>Monsieur Michaël Grunberg</p>
+
+    <h3>Hébergeur</h3>
+    <p><strong>Netlify, Inc.</strong><br>
+    44 Montgomery Street, Suite 300<br>
+    San Francisco, California 94104, États-Unis<br>
+    <a href="https://www.netlify.com" target="_blank" rel="noopener">www.netlify.com</a></p>
+
+    <h3>Propriété intellectuelle</h3>
+    <p>L'ensemble des contenus présents sur ce site (textes, images, logos, graphismes) est la propriété exclusive de l'AGASC ou de ses partenaires. Toute reproduction, même partielle, est interdite sans autorisation préalable écrite de l'AGASC.</p>
+
+    <h3>Responsabilité</h3>
+    <p>L'AGASC s'efforce de maintenir les informations publiées sur ce site exactes et à jour. Toutefois, elle ne saurait être tenue responsable des erreurs, omissions ou résultats pouvant être obtenus par un mauvais usage de ces informations.</p>
+  </div>
+</div>
+
+<!-- ===== MODAL POLITIQUE DE CONFIDENTIALITÉ ===== -->
+<div class="legal-overlay" id="modal-confidentialite" role="dialog" aria-modal="true" aria-label="Politique de confidentialité" onclick="closeLegalModal('modal-confidentialite', event)">
+  <div class="legal-modal">
+    <button class="legal-close" onclick="closeLegalModal('modal-confidentialite')" aria-label="Fermer">✕</button>
+    <h2>Politique de confidentialité</h2>
+
+    <h3>Responsable du traitement</h3>
+    <p><strong>Association AGASC</strong> — 57 Avenue des Pignatières, 06700 Saint-Laurent-du-Var<br>
+    E-mail : <a href="mailto:siege@agasc.fr">siege@agasc.fr</a></p>
+
+    <h3>Délégué à la Protection des Données (DPO)</h3>
+    <p>Madame Françoise Benne — <a href="mailto:siege@agasc.fr">siege@agasc.fr</a></p>
+
+    <h3>Données collectées</h3>
+    <p>Les données renseignées dans les formulaires sur ce site (nom, prénom, organisation, e-mail, téléphone, message) sont traitées par l'AGASC. Les informations collectées ne sont utilisées que dans la mesure où vous avez donné votre consentement et où elles sont nécessaires pour traiter vos demandes.</p>
+
+    <h3>Finalités du traitement</h3>
+    <ul>
+      <li>Traitement des demandes de partenariat et de contact</li>
+      <li>Envoi de la newsletter relative aux 50 ans de l'AGASC (sur inscription volontaire)</li>
+      <li>Amélioration de l'expérience utilisateur (données de navigation anonymisées)</li>
+    </ul>
+
+    <h3>Durée de conservation</h3>
+    <p>Vos données sont conservées au maximum <strong>3 ans</strong> après votre dernier contact avec l'AGASC.</p>
+
+    <h3>Vos droits</h3>
+    <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez des droits suivants :</p>
+    <ul>
+      <li>Droit d'accès à vos données personnelles</li>
+      <li>Droit de rectification des données inexactes</li>
+      <li>Droit à l'effacement (« droit à l'oubli »)</li>
+      <li>Droit d'opposition au traitement</li>
+      <li>Droit d'émettre des directives sur la conservation, la suppression ou la communication de vos données après votre décès</li>
+    </ul>
+    <p>Pour exercer ces droits, écrivez-nous à <a href="mailto:siege@agasc.fr">siege@agasc.fr</a> en joignant un justificatif d'identité.</p>
+
+    <h3>Réclamation</h3>
+    <p>Vous pouvez également saisir la <strong>CNIL</strong> en cas de désaccord : <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener">www.cnil.fr/fr/plaintes</a></p>
+
+    <h3>Opposition au démarchage téléphonique</h3>
+    <p>Nous vous informons de l'existence de la liste d'opposition au démarchage téléphonique <strong>Bloctel</strong> : <a href="https://www.bloctel.gouv.fr" target="_blank" rel="noopener">www.bloctel.gouv.fr</a></p>
+  </div>
+</div>
+
+<!-- ===== MODAL POLITIQUE DES COOKIES ===== -->
+<div class="legal-overlay" id="modal-cookies" role="dialog" aria-modal="true" aria-label="Politique des cookies" onclick="closeLegalModal('modal-cookies', event)">
+  <div class="legal-modal">
+    <button class="legal-close" onclick="closeLegalModal('modal-cookies')" aria-label="Fermer">✕</button>
+    <h2>Politique des cookies</h2>
+
+    <h3>Qu'est-ce qu'un cookie ?</h3>
+    <p>Un cookie est un outil informatique qui permet de tracer et d'analyser le comportement d'un utilisateur sur internet (sa navigation sur un site, dans une application, etc.). Il est déposé sur votre terminal (ordinateur, téléphone, tablette) lors de votre visite.</p>
+
+    <h3>Cookies utilisés sur ce site</h3>
+    <p>Ce site peut utiliser les types de cookies suivants :</p>
+    <ul>
+      <li><strong>Cookies fonctionnels</strong> : nécessaires au bon fonctionnement du site (mémorisation de vos préférences de cookies).</li>
+      <li><strong>Cookies analytiques</strong> : permettent d'analyser le trafic et d'améliorer l'expérience utilisateur (données anonymisées).</li>
+    </ul>
+    <p>Aucun cookie publicitaire n'est utilisé sur ce site.</p>
+
+    <h3>Votre choix</h3>
+    <p>Vous pouvez accepter ou refuser l'utilisation des cookies à tout moment via le bandeau d'information ou les boutons ci-dessous. Ce choix est enregistré pour une durée de 13 mois.</p>
+    <div class="cookie-btns" style="margin-top:1rem;">
+      <button class="cookie-btn-accept" onclick="setCookieChoice('accepted'); closeLegalModal('modal-cookies')">Accepter les cookies</button>
+      <button class="cookie-btn-refuse" style="border-color:#ccc; color:#666;" onclick="setCookieChoice('refused'); closeLegalModal('modal-cookies')">Refuser les cookies</button>
+    </div>
+
+    <h3>En savoir plus</h3>
+    <p>Pour plus d'informations sur les cookies et la gestion de vos données, consultez le site de la CNIL : <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs" target="_blank" rel="noopener">www.cnil.fr</a></p>
+  </div>
+</div>
+
+<script>
+/* ===== COOKIE BANNER ===== */
+(function() {
+  var choice = localStorage.getItem('agasc_cookie_choice');
+  if (!choice) {
+    document.getElementById('cookie-banner').classList.remove('hidden');
+  } else {
+    document.getElementById('cookie-banner').classList.add('hidden');
+  }
+})();
+
+function setCookieChoice(val) {
+  localStorage.setItem('agasc_cookie_choice', val);
+  var banner = document.getElementById('cookie-banner');
+  banner.classList.add('hidden');
+}
+
+/* ===== LEGAL MODALS ===== */
+function openLegalModal(id) {
+  var overlay = document.getElementById(id);
+  if (overlay) {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeLegalModal(id, event) {
+  if (event && event.target !== document.getElementById(id)) return;
+  var overlay = document.getElementById(id);
+  if (overlay) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.legal-overlay.open').forEach(function(el) {
+      el.classList.remove('open');
+    });
+    document.body.style.overflow = '';
+  }
+});
+</script>
+
 </body>
 </html>
