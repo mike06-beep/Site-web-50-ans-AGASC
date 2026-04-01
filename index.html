@@ -320,12 +320,6 @@
     .nav-social-btn { animation: social-pulse 3s ease infinite; }
     .nav-social-btn.ig { animation-delay: 1.5s; }
 
-    /* ===== CONFETTI ===== */
-    #confetti-canvas {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 5;
-    }
-
     /* ===== HERO ===== */
     #hero {
       min-height: 100vh;
@@ -1351,7 +1345,6 @@
 
 <!-- ===== HERO ===== -->
 <section id="hero" aria-label="Bienvenue">
-  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
   <div class="hero-bg-shapes" aria-hidden="true"></div>
   <div class="hero-50" aria-hidden="true">50</div>
 
@@ -2120,24 +2113,12 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-/* ===== CONFETTI PHOTO-RÉALISTE ===== */
+/* ===== CONFETTI (désactivé temporairement) ===== */
 (function() {
-  if (window.innerWidth < 769) return;
-
-  const canvas = document.getElementById('confetti-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+  // Confetti désactivé — sera réactivé lors des prochains tests
+  return;
 
   const PALETTES = [
-    { k:'gold', s:['#5a3a00','#b8860b','#ffd700','#fff3a0'] },
-    { k:'gold', s:['#6b4800','#c8960c','#ffe033','#fffce0'] },
-    { k:'gold', s:['#7a5200','#d4a800','#ffcc00','#fff8cc'] },
-    { k:'gold', s:['#4a3000','#a07800','#f5c842','#fff0b0'] },
-    { k:'blue', s:['#020714','#0a1232','#1e2d80','#4a60c0'] },
-    { k:'blue', s:['#030a1a','#0d1640','#27348b','#5a70c8'] },
-    { k:'blue', s:['#040c20','#162070','#2e40a8','#6880d8'] },
-    { k:'blue', s:['#050f28','#1a2870','#3050b0','#7090e0'] },
-  ];
 
   let particles = [];
   let animId    = null;
