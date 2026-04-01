@@ -344,11 +344,13 @@
     .nav-social-btn { animation: social-pulse 3s ease infinite; }
     .nav-social-btn.ig { animation-delay: 1.5s; }
 
-    /* ===== CONFETTI ===== */
-    #confetti-canvas {
+    /* ===== CONFETTI VIDEO ===== */
+    #confetti-video {
       position: absolute; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 2;
+      object-fit: cover; pointer-events: none; z-index: 2;
+      opacity: 0; transition: opacity 0.4s;
     }
+    #confetti-video.playing { opacity: 1; }
     /* Textes hero toujours au-dessus du canvas confetti */
     #hero .hero-logo, #hero .hero-badge, #hero .hero-title,
     #hero .hero-subtitle, #hero .hero-tagline, #hero .hero-date,
@@ -1539,7 +1541,7 @@
 
 <!-- ===== HERO ===== -->
 <section id="hero" aria-label="Bienvenue">
-  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+  <video id="confetti-video" src="assets/confettis.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
   <div class="hero-bg-shapes" aria-hidden="true"></div>
   <div class="hero-50" aria-hidden="true">50</div>
 
@@ -2533,132 +2535,33 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-/* ===== CONFETTI ===== */
+/* ===== CONFETTI VIDEO ===== */
 (function() {
-  if (window.innerWidth < 769) return;
+  var video = document.getElementById('confetti-video');
+  if (!video) return;
 
-  const canvas = document.getElementById('confetti-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  let particles = [];
-  let animId    = null;
-  let running   = false;
-
-  function resize() {
-    const hero = canvas.parentElement;
-    canvas.width  = (hero && hero.offsetWidth)  || window.innerWidth;
-    canvas.height = (hero && hero.offsetHeight) || window.innerHeight;
-  }
-
-  function spawnCannon(fromLeft) {
-    const cw = canvas.width;
-    const ch = canvas.height;
-    const ox = fromLeft ? cw * 0.24 : cw * 0.76;
-    const oy = ch * 0.88;
-
-    for (let i = 0; i < 38; i++) {
-      const isGold      = Math.random() < 0.5;
-      const isLandscape = Math.random() < 0.6;
-      const w = isLandscape ? 22 + Math.random() * 20 : 11 + Math.random() * 9;
-      const h = isLandscape ? 10 + Math.random() * 8  : 22 + Math.random() * 20;
-
-      // Vitesse modérée vers le haut — pic à ~150-250px, reste dans le hero
-      const vx = (Math.random() - 0.5) * 3.5 + (fromLeft ? -0.8 : 0.8);
-      const vy = -(3.2 + Math.random() * 3.2);
-
-      particles.push({
-        x: ox + (Math.random() - 0.5) * 60,
-        y: oy,
-        vx, vy, w, h, isLandscape,
-        type:    isGold ? 'gold' : 'blue',
-        alpha:   1,
-        rot:     Math.random() * Math.PI * 2,
-        rotV:    (Math.random() - 0.5) * 0.15,
-        gravity: 0.034 + Math.random() * 0.018,
-        drag:    0.992 + Math.random() * 0.006,
-        life:    0,
-        maxLife: 290 + Math.floor(Math.random() * 110)
-      });
-    }
-  }
-
-  function drawParticle(p) {
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate(p.rot);
-    ctx.globalAlpha = p.alpha;
-
-    const hw = p.w / 2, hh = p.h / 2;
-    ctx.shadowColor   = 'rgba(0,0,0,0.38)';
-    ctx.shadowBlur    = 3;
-    ctx.shadowOffsetX = 1.5;
-    ctx.shadowOffsetY = 1.5;
-
-    if (p.type === 'blue') {
-      ctx.fillStyle = '#1a3fbd';
-      ctx.fillRect(-hw, -hh, p.w, p.h);
-    } else {
-      // Foil doré : dégradé sur le petit côté → effet reflet métallique
-      const g = p.isLandscape
-        ? ctx.createLinearGradient(-hw, -hh, -hw, hh)   // haut→bas
-        : ctx.createLinearGradient(-hw, -hh, hw, -hh);  // gauche→droite
-      g.addColorStop(0,    '#7a5200');
-      g.addColorStop(0.28, '#d4a800');
-      g.addColorStop(0.50, '#fff0a0');
-      g.addColorStop(0.72, '#d4a800');
-      g.addColorStop(1,    '#7a5200');
-      ctx.fillStyle = g;
-      ctx.fillRect(-hw, -hh, p.w, p.h);
-    }
-
-    ctx.restore();
-  }
+  var running = false;
 
   function fire() {
     if (running) return;
     running = true;
-    particles = [];
-    spawnCannon(true);
-    spawnCannon(false);
-    animate();
+    video.currentTime = 0;
+    video.classList.add('playing');
+    video.play();
   }
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles = particles.filter(p => p.life < p.maxLife && p.alpha > 0.01);
-    particles.forEach(p => {
-      p.life++;
-      p.x   += p.vx;
-      p.y   += p.vy;
-      p.vy  += p.gravity;
-      p.vx  *= p.drag;
-      p.vy  *= p.drag;
-      p.rot += p.rotV;
-      if (p.life > p.maxLife * 0.70)
-        p.alpha = 1 - (p.life - p.maxLife * 0.70) / (p.maxLife * 0.30);
-      drawParticle(p);
-    });
-    if (particles.length > 0) {
-      animId = requestAnimationFrame(animate);
-    } else {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      animId  = null;
-      running = false;
-    }
-  }
+  video.addEventListener('ended', function() {
+    video.classList.remove('playing');
+    running = false;
+  });
 
-  // Déclenche automatiquement 1.2s après le chargement + au scroll
-  window.addEventListener('load', () => {
-    resize();
-    setTimeout(() => { if (!running) fire(); }, 1200);
+  window.addEventListener('load', function() {
+    setTimeout(fire, 1200);
   }, { once: true });
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', function() {
     if (window.scrollY > 40 && !running) fire();
   }, { passive: true });
-
-  window.addEventListener('resize', resize, { passive: true });
 })();
 </script>
 </div><!-- /page-wrapper -->
