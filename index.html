@@ -1332,6 +1332,131 @@
       .hero-logo { width: 90px; }
     }
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+    /* ===== SEO ARTICLES CAROUSEL ===== */
+    #seo-articles {
+      background: var(--section-alt);
+      padding: 4rem 2rem 4.5rem;
+    }
+    .seo-articles-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .seo-articles-header {
+      text-align: center; margin-bottom: 2.5rem;
+    }
+    .seo-articles-header .section-label {
+      display: inline-block;
+      background: var(--gold); color: var(--blue-dark);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px;
+      margin-bottom: 0.9rem; font-family: 'Raleway', sans-serif;
+    }
+    .seo-articles-header h2 {
+      font-family: 'Raleway', sans-serif; font-size: clamp(1.4rem,2.8vw,2rem);
+      font-weight: 800; color: var(--blue); margin: 0 0 0.5rem;
+    }
+    .seo-articles-header p {
+      color: var(--text-mid); font-size: 0.95rem; margin: 0;
+    }
+    .seo-carousel-viewport {
+      overflow: hidden; position: relative;
+    }
+    .seo-carousel-track {
+      display: flex; gap: 1.5rem;
+      transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+      will-change: transform;
+    }
+    .seo-article-card {
+      flex: 0 0 calc((100% - 3rem) / 3);
+      background: var(--white); border-radius: 14px;
+      box-shadow: 0 2px 16px rgba(39,52,139,0.08);
+      overflow: hidden; display: flex; flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .seo-article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(39,52,139,0.14);
+    }
+    .seo-card-badge {
+      padding: 1.4rem 1.4rem 0;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .seo-card-cat {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; font-family: 'Raleway', sans-serif;
+      padding: 0.22rem 0.65rem; border-radius: 20px;
+    }
+    .seo-card-cat.cat-histoire { background: rgba(39,52,139,0.1); color: var(--blue); }
+    .seo-card-cat.cat-evenement { background: rgba(232,187,63,0.18); color: #7a5200; }
+    .seo-card-cat.cat-sport { background: rgba(39,52,139,0.1); color: var(--blue); }
+    .seo-card-cat.cat-culture { background: rgba(232,187,63,0.18); color: #7a5200; }
+    .seo-card-cat.cat-social { background: rgba(39,52,139,0.1); color: var(--blue); }
+    .seo-card-read {
+      font-size: 0.7rem; color: var(--text-light); margin-left: auto;
+    }
+    .seo-card-body {
+      padding: 1rem 1.4rem 1.4rem; flex: 1; display: flex; flex-direction: column;
+    }
+    .seo-card-body h3 {
+      font-family: 'Raleway', sans-serif; font-size: 1rem; font-weight: 800;
+      color: var(--text-dark); margin: 0 0 0.65rem; line-height: 1.4;
+    }
+    .seo-card-body p {
+      font-size: 0.85rem; color: var(--text-mid); line-height: 1.65;
+      margin: 0 0 1rem; flex: 1;
+    }
+    .seo-card-tags {
+      display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1rem;
+    }
+    .seo-card-tag {
+      font-size: 0.66rem; background: var(--section-alt); color: var(--text-mid);
+      padding: 0.18rem 0.55rem; border-radius: 10px; font-weight: 500;
+    }
+    .seo-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 1.4rem; border-top: 1px solid rgba(39,52,139,0.07);
+    }
+    .seo-card-date { font-size: 0.72rem; color: var(--text-light); }
+    .seo-card-link {
+      font-size: 0.78rem; font-weight: 700; color: var(--blue);
+      text-decoration: none; font-family: 'Raleway', sans-serif;
+      display: flex; align-items: center; gap: 0.3rem;
+      transition: color 0.2s;
+    }
+    .seo-card-link:hover { color: var(--gold-dark); }
+    .seo-card-link svg { transition: transform 0.2s; }
+    .seo-card-link:hover svg { transform: translateX(3px); }
+    .seo-carousel-controls {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.2rem; margin-top: 2rem;
+    }
+    .seo-carousel-btn {
+      background: var(--white); border: 2px solid rgba(39,52,139,0.18);
+      color: var(--blue); border-radius: 50%; width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .seo-carousel-btn:hover:not(:disabled) {
+      background: var(--blue); color: var(--white); border-color: var(--blue);
+    }
+    .seo-carousel-btn:disabled { opacity: 0.3; cursor: default; }
+    .seo-carousel-dots {
+      display: flex; gap: 0.5rem; align-items: center;
+    }
+    .seo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(39,52,139,0.2); border: none; cursor: pointer; padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .seo-dot.active { background: var(--blue); transform: scale(1.3); }
+    @media (max-width: 900px) {
+      .seo-article-card { flex: 0 0 calc((100% - 1.5rem) / 2); }
+    }
+    @media (max-width: 600px) {
+      #seo-articles { padding: 3rem 1rem 3.5rem; }
+      .seo-article-card { flex: 0 0 85vw; }
+      .seo-carousel-track { gap: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -1881,6 +2006,183 @@
         <p>Investissez dans l'avenir de votre territoire. Un partenariat AGASC 50 ans, c'est du ROI et de l'impact durable.</p>
         <a href="#partenaires" class="btn-primary" style="display:inline-flex">Devenir Partenaire →</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SEO ARTICLES ===== -->
+<section id="seo-articles" aria-labelledby="seo-articles-title">
+  <div class="seo-articles-inner">
+    <header class="seo-articles-header">
+      <span class="section-label">À propos de l'AGASC</span>
+      <h2 id="seo-articles-title">Tout savoir sur l'AGASC et ses 50 ans</h2>
+      <p>Histoire, activités, événements et vie associative laurentine — retrouvez l'essentiel ici.</p>
+    </header>
+
+    <div class="seo-carousel-viewport" id="seo-carousel-vp">
+      <div class="seo-carousel-track" id="seo-carousel-track" role="list">
+
+        <!-- Article 1 -->
+        <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
+          <div class="seo-card-badge">
+            <span class="seo-card-cat cat-histoire">Histoire</span>
+            <span class="seo-card-read">3 min de lecture</span>
+          </div>
+          <div class="seo-card-body">
+            <h3 itemprop="headline">50 ans au service des Laurentins : l'histoire de l'AGASC</h3>
+            <p itemprop="description">Fondée en 1976 à Saint-Laurent-du-Var, l'AGASC — Association de Gestion et d'Animation Socio-Culturelle — a tissé un lien unique entre les habitants des Alpes-Maritimes. Cinquante années de sport, de culture, de loisirs et de solidarité sociale au cœur du territoire laurentin.</p>
+            <div class="seo-card-tags">
+              <span class="seo-card-tag">#AGASC</span>
+              <span class="seo-card-tag">#1976</span>
+              <span class="seo-card-tag">#SaintLaurentDuVar</span>
+              <span class="seo-card-tag">#50ans</span>
+            </div>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-01-01" itemprop="datePublished">Janvier 2026</time>
+            <a href="#histoire" class="seo-card-link" aria-label="Lire notre histoire">
+              Notre histoire
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </footer>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
+          <div class="seo-card-badge">
+            <span class="seo-card-cat cat-evenement">Événement</span>
+            <span class="seo-card-read">4 min de lecture</span>
+          </div>
+          <div class="seo-card-body">
+            <h3 itemprop="headline">27 septembre 2026 : grande fête au Parc Layet</h3>
+            <p itemprop="description">Le 27 septembre 2026, le Parc Layet de Saint-Laurent-du-Var accueillera la célébration des 50 ans de l'AGASC. Un événement public et gratuit ouvert à toute la famille : spectacles, animations, expositions et moments de convivialité pour fêter ensemble un demi-siècle d'engagement.</p>
+            <div class="seo-card-tags">
+              <span class="seo-card-tag">#ParcLayet</span>
+              <span class="seo-card-tag">#27septembre2026</span>
+              <span class="seo-card-tag">#AlpesMaritimes</span>
+              <span class="seo-card-tag">#Gratuit</span>
+            </div>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-09-27" itemprop="datePublished">Septembre 2026</time>
+            <a href="#evenement" class="seo-card-link" aria-label="Voir l'événement">
+              L'événement
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </footer>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
+          <div class="seo-card-badge">
+            <span class="seo-card-cat cat-sport">Sport & Loisirs</span>
+            <span class="seo-card-read">3 min de lecture</span>
+          </div>
+          <div class="seo-card-body">
+            <h3 itemprop="headline">Activités sportives et de loisirs à Saint-Laurent-du-Var</h3>
+            <p itemprop="description">Natation, tennis, arts martiaux, danse, fitness… L'AGASC propose depuis 50 ans un large panel d'activités sportives et de loisirs accessibles à tous les âges. Avec plus de 1 500 adhérents actifs dans les Alpes-Maritimes, l'association est un pilier du sport local laurentin.</p>
+            <div class="seo-card-tags">
+              <span class="seo-card-tag">#Sport</span>
+              <span class="seo-card-tag">#Loisirs</span>
+              <span class="seo-card-tag">#Famille</span>
+              <span class="seo-card-tag">#06700</span>
+            </div>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-02-01" itemprop="datePublished">Février 2026</time>
+            <a href="#activites" class="seo-card-link" aria-label="Découvrir les activités">
+              Les activités
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </footer>
+        </article>
+
+        <!-- Article 4 -->
+        <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
+          <div class="seo-card-badge">
+            <span class="seo-card-cat cat-culture">Culture</span>
+            <span class="seo-card-read">3 min de lecture</span>
+          </div>
+          <div class="seo-card-body">
+            <h3 itemprop="headline">Culture et expression : l'AGASC, bien plus qu'un club sportif</h3>
+            <p itemprop="description">Théâtre, musique, arts plastiques, photographie… L'AGASC anime la vie culturelle de Saint-Laurent-du-Var depuis 1976. Ateliers pour enfants, adolescents et adultes, expositions locales et spectacles font de l'association un acteur culturel incontournable des Alpes-Maritimes.</p>
+            <div class="seo-card-tags">
+              <span class="seo-card-tag">#Culture</span>
+              <span class="seo-card-tag">#Arts</span>
+              <span class="seo-card-tag">#Ateliers</span>
+              <span class="seo-card-tag">#Laurentin</span>
+            </div>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-03-01" itemprop="datePublished">Mars 2026</time>
+            <a href="#activites" class="seo-card-link" aria-label="Voir les ateliers culturels">
+              Les ateliers
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </footer>
+        </article>
+
+        <!-- Article 5 -->
+        <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
+          <div class="seo-card-badge">
+            <span class="seo-card-cat cat-social">Lien social</span>
+            <span class="seo-card-read">2 min de lecture</span>
+          </div>
+          <div class="seo-card-body">
+            <h3 itemprop="headline">L'AGASC : un pilier du lien social à Saint-Laurent-du-Var</h3>
+            <p itemprop="description">Au-delà du sport et de la culture, l'AGASC joue un rôle essentiel dans la cohésion sociale du territoire. Soutien aux seniors, accueil des nouvelles familles, accompagnement des jeunes… l'association tisse chaque jour du lien humain dans la commune de Saint-Laurent-du-Var (06700).</p>
+            <div class="seo-card-tags">
+              <span class="seo-card-tag">#Social</span>
+              <span class="seo-card-tag">#Solidarité</span>
+              <span class="seo-card-tag">#Communauté</span>
+              <span class="seo-card-tag">#Seniors</span>
+            </div>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-03-15" itemprop="datePublished">Mars 2026</time>
+            <a href="#rejoindre" class="seo-card-link" aria-label="Rejoindre l'AGASC">
+              Nous rejoindre
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </footer>
+        </article>
+
+        <!-- Article 6 -->
+        <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
+          <div class="seo-card-badge">
+            <span class="seo-card-cat cat-histoire">Chiffres clés</span>
+            <span class="seo-card-read">2 min de lecture</span>
+          </div>
+          <div class="seo-card-body">
+            <h3 itemprop="headline">L'AGASC en chiffres : 50 ans d'engagement citoyen</h3>
+            <p itemprop="description">50 ans d'existence, plus de 1 500 adhérents, des dizaines de disciplines sportives et culturelles, des centaines de bénévoles impliqués : l'AGASC est l'une des associations les plus actives des Alpes-Maritimes. Retour sur un demi-siècle d'engagement citoyen à Saint-Laurent-du-Var.</p>
+            <div class="seo-card-tags">
+              <span class="seo-card-tag">#Bénévoles</span>
+              <span class="seo-card-tag">#Adhérents</span>
+              <span class="seo-card-tag">#1500membres</span>
+              <span class="seo-card-tag">#VieLaurentine</span>
+            </div>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-04-01" itemprop="datePublished">Avril 2026</time>
+            <a href="#chiffres" class="seo-card-link" aria-label="Voir les chiffres clés">
+              Les chiffres
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </footer>
+        </article>
+
+      </div><!-- /track -->
+    </div><!-- /viewport -->
+
+    <div class="seo-carousel-controls" aria-label="Contrôles du carrousel">
+      <button class="seo-carousel-btn" id="seo-prev" aria-label="Article précédent" disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="seo-carousel-dots" id="seo-dots" role="tablist" aria-label="Pages du carrousel"></div>
+      <button class="seo-carousel-btn" id="seo-next" aria-label="Article suivant">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -2441,6 +2743,89 @@ document.addEventListener('keydown', function(e) {
     document.body.style.overflow = '';
   }
 });
+
+/* ===== SEO ARTICLES CAROUSEL ===== */
+(function() {
+  var track  = document.getElementById('seo-carousel-track');
+  var vp     = document.getElementById('seo-carousel-vp');
+  var btnPrev = document.getElementById('seo-prev');
+  var btnNext = document.getElementById('seo-next');
+  var dotsEl  = document.getElementById('seo-dots');
+  if (!track || !vp) return;
+
+  var cards = track.querySelectorAll('.seo-article-card');
+  var total = cards.length;
+  var current = 0;
+
+  function visibleCount() {
+    var w = vp.offsetWidth;
+    if (w < 600) return 1;
+    if (w < 900) return 2;
+    return 3;
+  }
+
+  function maxIndex() {
+    return Math.max(0, total - visibleCount());
+  }
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    var pages = maxIndex() + 1;
+    for (var i = 0; i < pages; i++) {
+      var btn = document.createElement('button');
+      btn.className = 'seo-dot' + (i === current ? ' active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-label', 'Page ' + (i + 1));
+      btn.setAttribute('aria-selected', i === current ? 'true' : 'false');
+      (function(idx) {
+        btn.addEventListener('click', function() { goTo(idx); });
+      })(i);
+      dotsEl.appendChild(btn);
+    }
+  }
+
+  function updateDots() {
+    var dots = dotsEl.querySelectorAll('.seo-dot');
+    dots.forEach(function(d, i) {
+      d.className = 'seo-dot' + (i === current ? ' active' : '');
+      d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+  }
+
+  function cardWidth() {
+    if (cards.length === 0) return 0;
+    var gap = parseInt(window.getComputedStyle(track).gap) || 24;
+    var vc = visibleCount();
+    return (vp.offsetWidth - gap * (vc - 1)) / vc + gap;
+  }
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, maxIndex()));
+    track.style.transform = 'translateX(-' + (current * cardWidth()) + 'px)';
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current >= maxIndex();
+    updateDots();
+  }
+
+  btnPrev.addEventListener('click', function() { goTo(current - 1); });
+  btnNext.addEventListener('click', function() { goTo(current + 1); });
+
+  window.addEventListener('resize', function() {
+    buildDots();
+    goTo(Math.min(current, maxIndex()));
+  }, { passive: true });
+
+  buildDots();
+  goTo(0);
+
+  /* Touch swipe */
+  var startX = 0;
+  vp.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+  vp.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+  }, { passive: true });
+})();
 </script>
 
 </body>
