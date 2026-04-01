@@ -2709,17 +2709,17 @@ document.addEventListener('keydown', function(e) {
   var vLeft  = document.getElementById('confetti-vid-left');
   var vRight = document.getElementById('confetti-vid-right');
   if (!vLeft || !vRight) return;
-  var running = false;
+  var fired = false;
   function fire() {
-    if (running) return;
-    running = true;
+    fired = true;
     [vLeft, vRight].forEach(function(v) { v.currentTime = 0; v.classList.add('playing'); v.play(); });
   }
   vLeft.addEventListener('ended', function() {
-    vLeft.classList.remove('playing'); vRight.classList.remove('playing'); running = false;
+    vLeft.classList.remove('playing'); vRight.classList.remove('playing');
   });
-  window.addEventListener('load', function() { setTimeout(fire, 1200); }, { once: true });
-  window.addEventListener('scroll', function() { if (window.scrollY > 40 && !running) fire(); }, { passive: true });
+  window.addEventListener('scroll', function() {
+    if (!fired && window.scrollY > 40) fire();
+  }, { passive: true });
 })();
 
 /* ===== SEO ARTICLES EXPAND ===== */
