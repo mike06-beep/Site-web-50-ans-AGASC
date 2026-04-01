@@ -2178,10 +2178,10 @@ window.addEventListener('scroll', () => {
         // Serpentin étroit et long
         w = 4  + Math.random() * 3;  h = 55 + Math.random() * 35; shape = 'strip';
       }
-      // Vitesse : vers le haut, légèrement écarté vers l'extérieur
-      const spreadOut = fromLeft ? -(Math.random() * 2.5) : (Math.random() * 2.5);
-      const vx = spreadOut + (Math.random() - 0.5) * 3;
-      const vy = -(8 + Math.random() * 8); // forte poussée vers le haut
+      // Vitesse : légère poussée vers le haut, restent dans le hero (~100-200px de montée)
+      const spreadOut = fromLeft ? -(Math.random() * 2) : (Math.random() * 2);
+      const vx = spreadOut + (Math.random() - 0.5) * 2.5;
+      const vy = -(2 + Math.random() * 3); // pic à ~80-200px max, reste dans le canvas
       particles.push({
         x: ox + (Math.random() - 0.5) * 50,
         y: oy,
