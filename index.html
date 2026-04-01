@@ -1430,10 +1430,13 @@
       font-family: 'Raleway', sans-serif;
       display: flex; align-items: center; gap: 0.3rem;
       transition: color 0.2s; padding: 0;
+      margin-top: 0.6rem;
     }
     .seo-expand-btn:hover { color: var(--gold-dark); }
     .seo-expand-btn .expand-icon { transition: transform 0.3s; display: inline-flex; }
-    .seo-expand-btn[aria-expanded="true"] .expand-icon { transform: rotate(90deg); }
+    .seo-article-expanded { order: 5; }
+    .seo-card-footer { order: 10; }
+    .seo-card-date { color: #fff !important; }
     .seo-article-expanded {
       max-height: 0; overflow: hidden;
       transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
@@ -2065,13 +2068,13 @@
               <span class="seo-card-tag">#SaintLaurentDuVar</span>
               <span class="seo-card-tag">#50ans</span>
             </div>
-          </div>
-          <footer class="seo-card-footer">
-            <time class="seo-card-date" datetime="2026-01-01" itemprop="datePublished">Janvier 2026</time>
             <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-1">
               Lire la suite
               <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
             </button>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-01-01" itemprop="datePublished">Janvier 2026</time>
           </footer>
           <div class="seo-article-expanded" id="exp-1" itemprop="articleBody">
             <div class="exp-sep"></div>
@@ -2098,13 +2101,13 @@
               <span class="seo-card-tag">#AlpesMaritimes</span>
               <span class="seo-card-tag">#Gratuit</span>
             </div>
-          </div>
-          <footer class="seo-card-footer">
-            <time class="seo-card-date" datetime="2026-09-27" itemprop="datePublished">Septembre 2026</time>
             <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-2">
               Lire la suite
               <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
             </button>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-09-27" itemprop="datePublished">Septembre 2026</time>
           </footer>
           <div class="seo-article-expanded" id="exp-2" itemprop="articleBody">
             <div class="exp-sep"></div>
@@ -2131,13 +2134,13 @@
               <span class="seo-card-tag">#Famille</span>
               <span class="seo-card-tag">#06700</span>
             </div>
-          </div>
-          <footer class="seo-card-footer">
-            <time class="seo-card-date" datetime="2026-02-01" itemprop="datePublished">Février 2026</time>
             <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-3">
               Lire la suite
               <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
             </button>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-02-01" itemprop="datePublished">Février 2026</time>
           </footer>
           <div class="seo-article-expanded" id="exp-3" itemprop="articleBody">
             <div class="exp-sep"></div>
@@ -2164,13 +2167,13 @@
               <span class="seo-card-tag">#Ateliers</span>
               <span class="seo-card-tag">#Laurentin</span>
             </div>
-          </div>
-          <footer class="seo-card-footer">
-            <time class="seo-card-date" datetime="2026-03-01" itemprop="datePublished">Mars 2026</time>
             <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-4">
               Lire la suite
               <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
             </button>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-03-01" itemprop="datePublished">Mars 2026</time>
           </footer>
           <div class="seo-article-expanded" id="exp-4" itemprop="articleBody">
             <div class="exp-sep"></div>
@@ -2197,13 +2200,13 @@
               <span class="seo-card-tag">#Communauté</span>
               <span class="seo-card-tag">#Seniors</span>
             </div>
-          </div>
-          <footer class="seo-card-footer">
-            <time class="seo-card-date" datetime="2026-03-15" itemprop="datePublished">Mars 2026</time>
             <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-5">
               Lire la suite
               <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
             </button>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-03-15" itemprop="datePublished">Mars 2026</time>
           </footer>
           <div class="seo-article-expanded" id="exp-5" itemprop="articleBody">
             <div class="exp-sep"></div>
@@ -2230,13 +2233,13 @@
               <span class="seo-card-tag">#1500membres</span>
               <span class="seo-card-tag">#VieLaurentine</span>
             </div>
-          </div>
-          <footer class="seo-card-footer">
-            <time class="seo-card-date" datetime="2026-04-01" itemprop="datePublished">Avril 2026</time>
             <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-6">
               Lire la suite
               <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
             </button>
+          </div>
+          <footer class="seo-card-footer">
+            <time class="seo-card-date" datetime="2026-04-01" itemprop="datePublished">Avril 2026</time>
           </footer>
           <div class="seo-article-expanded" id="exp-6" itemprop="articleBody">
             <div class="exp-sep"></div>
@@ -2829,6 +2832,18 @@ document.addEventListener('keydown', function(e) {
       var panel = document.getElementById(targetId);
       if (!panel) return;
       var isOpen = panel.classList.contains('open');
+      /* Ferme toutes les autres cartes */
+      if (!isOpen) {
+        document.querySelectorAll('.seo-article-expanded.open').forEach(function(p) {
+          p.classList.remove('open');
+          var b = document.querySelector('[aria-controls="' + p.id + '"]');
+          if (b) {
+            b.setAttribute('aria-expanded', 'false');
+            var ic = b.querySelector('.expand-icon');
+            if (ic) ic.style.transform = '';
+          }
+        });
+      }
       panel.classList.toggle('open', !isOpen);
       btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
       btn.querySelector('.expand-icon').style.transform = !isOpen ? 'rotate(90deg)' : '';
