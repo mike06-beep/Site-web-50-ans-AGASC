@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>AGASC 50 ans Ensemble — Événement anniversaire 27 septembre 2026 | Saint-Laurent-du-Var</title>
   <meta name="description" content="Célébrez 50 ans de vie ensemble avec l'AGASC à Saint-Laurent-du-Var (Alpes-Maritimes). Grand événement public le 27 septembre 2026 au Parc Layet : sport, culture, loisirs, social. Association laurentine depuis 1976." />
-  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="AGASC, 50 ans, Saint-Laurent-du-Var, association, sport, loisirs, culture, social, événement, anniversaire, Parc Layet, Alpes-Maritimes, 06700" />
+  <meta name="author" content="AGASC — Association de Gestion et d'Animation Socio-Culturelle" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://agasc50ans.fr/" />
+  <link rel="sitemap" type="application/xml" href="https://agasc50ans.fr/sitemap.xml" />
+
+  <!-- Géolocalisation locale -->
+  <meta name="geo.region" content="FR-06" />
+  <meta name="geo.placename" content="Saint-Laurent-du-Var" />
+  <meta name="geo.position" content="43.6615;7.1854" />
+  <meta name="ICBM" content="43.6615, 7.1854" />
 
   <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:type" content="website" />
@@ -32,7 +41,19 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://agasc50ans.fr/#website",
+        "url": "https://agasc50ans.fr/",
+        "name": "AGASC 50 ans Ensemble",
+        "description": "Site officiel des 50 ans de l'AGASC à Saint-Laurent-du-Var",
+        "inLanguage": "fr-FR",
+        "publisher": {
+          "@id": "https://agasc50ans.fr/#organization"
+        }
+      },
+      {
         "@type": "Event",
+        "@id": "https://agasc50ans.fr/#event",
         "name": "AGASC 50 ans Ensemble — Grand Événement Anniversaire",
         "description": "Célébration des 50 ans de l'AGASC à Saint-Laurent-du-Var. Une journée festive et inoubliable : pan bagnat géant, village des 5 piliers, défis intergénérationnels, capsule temporelle et gala des 50 ans.",
         "startDate": "2026-09-27T10:00:00+02:00",
@@ -58,22 +79,14 @@
         },
         "image": "https://agasc50ans.fr/assets/logos/agasc-50ans-fond.png",
         "url": "https://agasc50ans.fr/",
-        "organizer": {
-          "@type": "Organization",
-          "name": "AGASC — Association de Gestion et d'Animation Socio-Culturelle",
-          "url": "https://agasc.fr",
-          "telephone": "+33493315018",
-          "email": "siege@agasc.fr",
-          "sameAs": [
-            "https://www.facebook.com/agasc.officiel",
-            "https://www.instagram.com/agascofficiel/"
-          ]
-        },
+        "organizer": { "@id": "https://agasc50ans.fr/#organization" },
         "isAccessibleForFree": true,
-        "typicalAgeRange": "Tous âges"
+        "typicalAgeRange": "Tous âges",
+        "keywords": "AGASC, anniversaire, 50 ans, Saint-Laurent-du-Var, sport, culture, loisirs, social"
       },
       {
-        "@type": "Organization",
+        "@type": ["Organization", "SportsClub"],
+        "@id": "https://agasc50ans.fr/#organization",
         "name": "AGASC — Association de Gestion et d'Animation Socio-Culturelle",
         "alternateName": "AGASC",
         "description": "Association laurentine fondée en 1976, proposant des activités sportives, culturelles, de loisirs et sociales à Saint-Laurent-du-Var.",
@@ -85,14 +98,25 @@
           "streetAddress": "57 Avenue des Pignatières",
           "addressLocality": "Saint-Laurent-du-Var",
           "postalCode": "06700",
-          "addressCountry": "FR"
+          "addressCountry": "FR",
+          "addressRegion": "Alpes-Maritimes"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "43.6615",
+          "longitude": "7.1854"
         },
         "telephone": "+33493315018",
         "email": "siege@agasc.fr",
         "sameAs": [
           "https://www.facebook.com/agasc.officiel",
-          "https://www.instagram.com/agascofficiel/"
-        ]
+          "https://www.instagram.com/agascofficiel/",
+          "https://agasc.fr"
+        ],
+        "areaServed": {
+          "@type": "City",
+          "name": "Saint-Laurent-du-Var"
+        }
       }
     ]
   }
