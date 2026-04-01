@@ -1370,7 +1370,7 @@
       flex: 0 0 calc((100% - 3rem) / 3);
       background: var(--white); border-radius: 14px;
       box-shadow: 0 2px 16px rgba(39,52,139,0.08);
-      overflow: hidden; display: flex; flex-direction: column;
+      display: flex; flex-direction: column;
       transition: transform 0.25s, box-shadow 0.25s;
     }
     .seo-article-card:hover {
@@ -1391,9 +1391,6 @@
     .seo-card-cat.cat-sport { background: rgba(39,52,139,0.1); color: var(--blue); }
     .seo-card-cat.cat-culture { background: rgba(232,187,63,0.18); color: #7a5200; }
     .seo-card-cat.cat-social { background: rgba(39,52,139,0.1); color: var(--blue); }
-    .seo-card-read {
-      font-size: 0.7rem; color: var(--text-light); margin-left: auto;
-    }
     .seo-card-body {
       padding: 1rem 1.4rem 1.4rem; flex: 1; display: flex; flex-direction: column;
     }
@@ -1426,6 +1423,38 @@
     .seo-card-link:hover { color: var(--gold-dark); }
     .seo-card-link svg { transition: transform 0.2s; }
     .seo-card-link:hover svg { transform: translateX(3px); }
+    /* Accordion expand */
+    .seo-expand-btn {
+      font-size: 0.78rem; font-weight: 700; color: var(--blue);
+      background: none; border: none; cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      display: flex; align-items: center; gap: 0.3rem;
+      transition: color 0.2s; padding: 0;
+    }
+    .seo-expand-btn:hover { color: var(--gold-dark); }
+    .seo-expand-btn .expand-icon { transition: transform 0.3s; display: inline-flex; }
+    .seo-expand-btn[aria-expanded="true"] .expand-icon { transform: rotate(90deg); }
+    .seo-article-expanded {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
+      padding: 0 1.4rem;
+    }
+    .seo-article-expanded.open {
+      max-height: 1200px;
+      padding: 0 1.4rem 1.4rem;
+    }
+    .seo-article-expanded .exp-sep {
+      height: 1px; background: rgba(39,52,139,0.08); margin-bottom: 1rem;
+    }
+    .seo-article-expanded h4 {
+      font-family: 'Raleway', sans-serif; font-size: 0.88rem;
+      font-weight: 800; color: var(--blue); margin: 1.1rem 0 0.4rem;
+    }
+    .seo-article-expanded h4:first-of-type { margin-top: 0; }
+    .seo-article-expanded p {
+      font-size: 0.83rem; color: var(--text-mid); line-height: 1.72;
+      margin: 0 0 0.7rem;
+    }
     .seo-carousel-controls {
       display: flex; align-items: center; justify-content: center;
       gap: 1.2rem; margin-top: 2rem;
@@ -2026,7 +2055,6 @@
         <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
           <div class="seo-card-badge">
             <span class="seo-card-cat cat-histoire">Histoire</span>
-            <span class="seo-card-read">3 min de lecture</span>
           </div>
           <div class="seo-card-body">
             <h3 itemprop="headline">50 ans au service des Laurentins : l'histoire de l'AGASC</h3>
@@ -2040,18 +2068,26 @@
           </div>
           <footer class="seo-card-footer">
             <time class="seo-card-date" datetime="2026-01-01" itemprop="datePublished">Janvier 2026</time>
-            <a href="#histoire" class="seo-card-link" aria-label="Lire notre histoire">
-              Notre histoire
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-1">
+              Lire la suite
+              <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </button>
           </footer>
+          <div class="seo-article-expanded" id="exp-1" itemprop="articleBody">
+            <div class="exp-sep"></div>
+            <h4>Les origines : 1976, une association née d'une volonté collective</h4>
+            <p>L'AGASC voit le jour en 1976 à Saint-Laurent-du-Var, commune du département des Alpes-Maritimes (06700), à l'initiative d'habitants laurentins soucieux de créer un cadre fédérateur pour les activités sportives, culturelles et sociales du territoire. Dès sa fondation, l'association affiche une ambition claire : offrir à chaque habitant, quel que soit son âge ou sa condition, un espace de partage, d'épanouissement et de lien social. Le nom même de l'association — Association de Gestion et d'Animation Socio-Culturelle — résume cette vocation plurielle, ancrée dans la vie quotidienne des Laurentins.</p>
+            <h4>Des décennies de croissance et d'enracinement</h4>
+            <p>Au fil des décennies, l'AGASC n'a cessé d'évoluer, de se structurer et d'élargir ses horizons. Les années 1980 voient l'essor des sections sportives — natation, arts martiaux, tennis — tandis que les années 1990 et 2000 marquent le développement des ateliers culturels et des programmes sociaux. Chaque décennie apporte son lot d'innovations : nouvelles disciplines, nouveaux partenariats avec la Ville de Saint-Laurent-du-Var, le Département des Alpes-Maritimes et la Région Provence-Alpes-Côte d'Azur. L'association devient progressivement l'un des acteurs associatifs les plus importants de la Côte d'Azur, reconnue pour la qualité de son action et l'engagement de ses bénévoles.</p>
+            <h4>2026 : un demi-siècle d'histoire et un avenir ambitieux</h4>
+            <p>En 2026, l'AGASC célèbre ses 50 ans avec fierté et enthousiasme. Ce demi-siècle d'existence témoigne de la vitalité associative de Saint-Laurent-du-Var et de la confiance que les Laurentins placent dans leur association depuis 1976. Forte de plus de 1 500 adhérents actifs, de centaines de bénévoles investis et de dizaines de disciplines proposées chaque saison, l'AGASC aborde cet anniversaire avec des projets plein les cartons : modernisation des équipements, développement de nouveaux programmes intergénérationnels et renforcement du lien social dans la commune.</p>
+          </div>
         </article>
 
         <!-- Article 2 -->
         <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
           <div class="seo-card-badge">
             <span class="seo-card-cat cat-evenement">Événement</span>
-            <span class="seo-card-read">4 min de lecture</span>
           </div>
           <div class="seo-card-body">
             <h3 itemprop="headline">27 septembre 2026 : grande fête au Parc Layet</h3>
@@ -2065,18 +2101,26 @@
           </div>
           <footer class="seo-card-footer">
             <time class="seo-card-date" datetime="2026-09-27" itemprop="datePublished">Septembre 2026</time>
-            <a href="#evenement" class="seo-card-link" aria-label="Voir l'événement">
-              L'événement
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-2">
+              Lire la suite
+              <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </button>
           </footer>
+          <div class="seo-article-expanded" id="exp-2" itemprop="articleBody">
+            <div class="exp-sep"></div>
+            <h4>Une journée de fête ouverte à tous</h4>
+            <p>Le dimanche 27 septembre 2026, le Parc Layet de Saint-Laurent-du-Var se transforme en lieu de célébration pour marquer le 50e anniversaire de l'AGASC. Cet événement entièrement gratuit et ouvert à tous les publics accueille familles, enfants, adolescents, adultes et seniors dans une atmosphère festive et chaleureuse. Au programme : démonstrations sportives animées par les sections de l'AGASC, ateliers culturels en accès libre, expositions retraçant 50 ans d'histoire associative, spectacles de rue, animations musicales et temps conviviaux tout au long de la journée.</p>
+            <h4>Le Parc Layet : un site emblématique de Saint-Laurent-du-Var</h4>
+            <p>Situé au cœur de Saint-Laurent-du-Var (06700, Alpes-Maritimes), le Parc Layet est l'un des espaces verts les plus appréciés des habitants de la commune. Avec ses vastes pelouses, ses zones ombragées et sa capacité d'accueil importante, il constitue le cadre idéal pour un événement populaire de cette envergure. Saint-Laurent-du-Var, commune dynamique de la Côte d'Azur, est facilement accessible depuis Nice, Cagnes-sur-Mer et Antibes, que ce soit en transports en commun (bus lignes Côte d'Azur Métropole) ou en voiture (sortie A8).</p>
+            <h4>Comment participer à la célébration des 50 ans ?</h4>
+            <p>L'entrée à l'événement du 27 septembre 2026 est libre et gratuite — aucune inscription préalable n'est requise pour assister aux animations. Pour les activités nécessitant une inscription (ateliers, initiations sportives, repas festif), un formulaire de préinscription est disponible sur ce site. L'AGASC invite tous les Laurentins, mais aussi les habitants des communes voisines des Alpes-Maritimes, à venir célébrer ensemble ce demi-siècle de lien social, de sport et de culture à Saint-Laurent-du-Var.</p>
+          </div>
         </article>
 
         <!-- Article 3 -->
         <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
           <div class="seo-card-badge">
             <span class="seo-card-cat cat-sport">Sport & Loisirs</span>
-            <span class="seo-card-read">3 min de lecture</span>
           </div>
           <div class="seo-card-body">
             <h3 itemprop="headline">Activités sportives et de loisirs à Saint-Laurent-du-Var</h3>
@@ -2090,18 +2134,26 @@
           </div>
           <footer class="seo-card-footer">
             <time class="seo-card-date" datetime="2026-02-01" itemprop="datePublished">Février 2026</time>
-            <a href="#activites" class="seo-card-link" aria-label="Découvrir les activités">
-              Les activités
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-3">
+              Lire la suite
+              <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </button>
           </footer>
+          <div class="seo-article-expanded" id="exp-3" itemprop="articleBody">
+            <div class="exp-sep"></div>
+            <h4>Un large éventail de disciplines sportives</h4>
+            <p>L'AGASC propose à Saint-Laurent-du-Var une offre sportive diversifiée, couvrant aussi bien les sports individuels que collectifs. Parmi les activités phares figurent la natation (cours pour tous niveaux, bébés nageurs, aquagym), le tennis, les arts martiaux (judo, karaté, taekwondo), la danse (classique, contemporaine, hip-hop), le fitness, la gym douce et le yoga. Cette variété de disciplines, animée par des encadrants diplômés d'État, fait de l'AGASC l'une des associations sportives les plus complètes des Alpes-Maritimes (06).</p>
+            <h4>Des cours accessibles à tous les âges et tous les niveaux</h4>
+            <p>L'une des forces de l'AGASC réside dans son accessibilité. Des créneaux sont dédiés aux tout-petits dès 18 mois, aux enfants en âge scolaire, aux adolescents, aux adultes actifs et aux seniors. Les cours débutants sont accueillis avec bienveillance, et les tarifs d'adhésion sont étudiés pour rester abordables pour les familles laurentines. Des tarifs préférentiels sont proposés pour les abonnements multi-activités, permettant à chaque habitant de Saint-Laurent-du-Var (06700) de pratiquer plusieurs disciplines sans se ruiner.</p>
+            <h4>S'inscrire à une activité sportive de l'AGASC</h4>
+            <p>Les inscriptions aux activités sportives de l'AGASC se déroulent chaque année à la rentrée de septembre. Il est également possible de rejoindre une section en cours d'année selon les disponibilités. Pour les 50 ans de l'association, des journées portes ouvertes sont organisées au Parc Layet le 27 septembre 2026 : une occasion idéale pour essayer gratuitement plusieurs disciplines et rencontrer les encadrants. Pour toute information sur les horaires, tarifs et inscriptions à Saint-Laurent-du-Var, consultez le formulaire de contact sur ce site.</p>
+          </div>
         </article>
 
         <!-- Article 4 -->
         <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
           <div class="seo-card-badge">
             <span class="seo-card-cat cat-culture">Culture</span>
-            <span class="seo-card-read">3 min de lecture</span>
           </div>
           <div class="seo-card-body">
             <h3 itemprop="headline">Culture et expression : l'AGASC, bien plus qu'un club sportif</h3>
@@ -2115,18 +2167,26 @@
           </div>
           <footer class="seo-card-footer">
             <time class="seo-card-date" datetime="2026-03-01" itemprop="datePublished">Mars 2026</time>
-            <a href="#activites" class="seo-card-link" aria-label="Voir les ateliers culturels">
-              Les ateliers
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-4">
+              Lire la suite
+              <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </button>
           </footer>
+          <div class="seo-article-expanded" id="exp-4" itemprop="articleBody">
+            <div class="exp-sep"></div>
+            <h4>Les ateliers culturels proposés par l'AGASC</h4>
+            <p>Depuis sa création en 1976, l'AGASC a fait de la culture un pilier aussi important que le sport dans son projet associatif. À Saint-Laurent-du-Var, l'association propose une palette d'ateliers créatifs et artistiques : cours de théâtre pour enfants et adultes, ateliers d'arts plastiques (peinture, dessin, sculpture), pratique musicale (chorale, instruments), photographie, écriture créative et bien d'autres disciplines. Ces activités culturelles sont animées par des intervenants qualifiés et passionnés, qui transmettent leur savoir-faire dans une ambiance bienveillante et stimulante.</p>
+            <h4>Des événements culturels tout au long de l'année</h4>
+            <p>Au-delà des ateliers hebdomadaires, l'AGASC organise régulièrement des événements culturels ouverts au grand public dans les Alpes-Maritimes : spectacles de fin d'année mettant en scène les élèves du théâtre et de la danse, expositions d'arts plastiques dans les espaces municipaux de Saint-Laurent-du-Var, concerts de la chorale associative, projections photographiques et soirées thématiques. Ces rendez-vous culturels participent à la richesse de la vie locale et renforcent l'identité de la commune sur la Côte d'Azur.</p>
+            <h4>La culture comme vecteur de lien social laurentin</h4>
+            <p>Pour l'AGASC, la pratique culturelle n'est pas seulement un loisir — c'est un puissant vecteur de rencontres et de cohésion sociale. Les ateliers mixent les générations, les origines et les niveaux, créant des dynamiques humaines précieuses dans une commune cosmopolite comme Saint-Laurent-du-Var (06700). À l'occasion du 50e anniversaire de l'AGASC en 2026, une grande exposition retracing les créations des adhérents sur cinq décennies sera présentée au Parc Layet lors de la fête du 27 septembre.</p>
+          </div>
         </article>
 
         <!-- Article 5 -->
         <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
           <div class="seo-card-badge">
             <span class="seo-card-cat cat-social">Lien social</span>
-            <span class="seo-card-read">2 min de lecture</span>
           </div>
           <div class="seo-card-body">
             <h3 itemprop="headline">L'AGASC : un pilier du lien social à Saint-Laurent-du-Var</h3>
@@ -2140,18 +2200,26 @@
           </div>
           <footer class="seo-card-footer">
             <time class="seo-card-date" datetime="2026-03-15" itemprop="datePublished">Mars 2026</time>
-            <a href="#rejoindre" class="seo-card-link" aria-label="Rejoindre l'AGASC">
-              Nous rejoindre
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-5">
+              Lire la suite
+              <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </button>
           </footer>
+          <div class="seo-article-expanded" id="exp-5" itemprop="articleBody">
+            <div class="exp-sep"></div>
+            <h4>Un soutien concret aux populations fragiles</h4>
+            <p>L'AGASC s'engage depuis 50 ans à Saint-Laurent-du-Var dans une démarche de solidarité active envers les populations les plus vulnérables. Des programmes spécifiques sont proposés aux seniors — gym douce adaptée, ateliers de prévention des chutes, activités de stimulation cognitive — ainsi qu'aux personnes en situation de handicap et aux familles en difficulté. En partenariat avec le Centre Communal d'Action Sociale (CCAS) de Saint-Laurent-du-Var et les services du Département des Alpes-Maritimes, l'association joue un rôle d'acteur social de proximité reconnu.</p>
+            <h4>Des programmes intergénérationnels innovants</h4>
+            <p>L'une des spécificités de l'AGASC est sa capacité à créer des ponts entre les générations. Des ateliers mixant seniors et jeunes enfants, des événements où cohabitent ados et retraités, des projets artistiques ou sportifs réunissant plusieurs tranches d'âge : ces initiatives intergénérationnelles sont au cœur de l'identité associative laurentine. Dans une commune comme Saint-Laurent-du-Var, qui accueille une population diverse et dynamique, ces liens entre générations sont essentiels à la cohésion communautaire.</p>
+            <h4>Bénévolat et engagement citoyen dans les Alpes-Maritimes</h4>
+            <p>L'AGASC ne fonctionnerait pas sans ses bénévoles. Des centaines d'habitants de Saint-Laurent-du-Var et des environs consacrent une partie de leur temps libre à l'animation, à l'encadrement ou à la gestion administrative de l'association. Devenir bénévole à l'AGASC, c'est s'inscrire dans une histoire citoyenne de 50 ans et contribuer activement au bien commun dans les Alpes-Maritimes. Si vous souhaitez rejoindre cette aventure humaine, toutes les informations sont disponibles via le formulaire de contact du site.</p>
+          </div>
         </article>
 
         <!-- Article 6 -->
         <article class="seo-article-card" role="listitem" itemscope itemtype="https://schema.org/Article">
           <div class="seo-card-badge">
             <span class="seo-card-cat cat-histoire">Chiffres clés</span>
-            <span class="seo-card-read">2 min de lecture</span>
           </div>
           <div class="seo-card-body">
             <h3 itemprop="headline">L'AGASC en chiffres : 50 ans d'engagement citoyen</h3>
@@ -2165,11 +2233,20 @@
           </div>
           <footer class="seo-card-footer">
             <time class="seo-card-date" datetime="2026-04-01" itemprop="datePublished">Avril 2026</time>
-            <a href="#chiffres" class="seo-card-link" aria-label="Voir les chiffres clés">
-              Les chiffres
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            <button class="seo-expand-btn" aria-expanded="false" aria-controls="exp-6">
+              Lire la suite
+              <span class="expand-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </button>
           </footer>
+          <div class="seo-article-expanded" id="exp-6" itemprop="articleBody">
+            <div class="exp-sep"></div>
+            <h4>50 ans de croissance : l'AGASC en données</h4>
+            <p>En 50 ans d'existence, l'AGASC a connu une croissance remarquable. De quelques dizaines de membres fondateurs en 1976, l'association est passée à plus de 1 500 adhérents actifs en 2026, répartis sur une trentaine de disciplines sportives et culturelles. Plus de 200 bénévoles investissent leur énergie au service de l'association chaque saison, aux côtés d'une équipe de professionnels diplômés. Ce développement constant témoigne de l'enracinement profond de l'AGASC dans la vie sociale et culturelle de Saint-Laurent-du-Var et des communes environnantes des Alpes-Maritimes.</p>
+            <h4>Les moments clés de cinq décennies d'histoire</h4>
+            <p>1976 : création de l'AGASC à Saint-Laurent-du-Var. 1986 : ouverture des premières sections culturelles. 1996 : cap des 500 adhérents franchi. 2001 : lancement des programmes intergénérationnels. 2011 : 35e anniversaire, inauguration de nouvelles installations sportives. 2016 : 40 ans, lancement du programme senior «&nbsp;Bien vieillir ensemble&nbsp;». 2026 : 50 ans, grand événement public au Parc Layet le 27 septembre. Chaque étape reflète la capacité de l'association à se renouveler tout en restant fidèle à ses valeurs fondatrices.</p>
+            <h4>L'AGASC dans le paysage associatif des Alpes-Maritimes</h4>
+            <p>Dans un département des Alpes-Maritimes riche de milliers d'associations, l'AGASC se distingue par l'ampleur et la diversité de son projet. Reconnue par la Ville de Saint-Laurent-du-Var, soutenue par le Département 06 et la Région PACA, elle est régulièrement citée en exemple pour son modèle associatif inclusif et sa capacité à fédérer des publics variés. Pour ses 50 ans en 2026, l'AGASC ambitionne de renforcer encore davantage sa présence sur la Côte d'Azur et d'inspirer d'autres associations locales par son histoire et son dynamisme.</p>
+          </div>
         </article>
 
       </div><!-- /track -->
@@ -2743,6 +2820,21 @@ document.addEventListener('keydown', function(e) {
     document.body.style.overflow = '';
   }
 });
+
+/* ===== SEO ARTICLES EXPAND ===== */
+(function() {
+  document.querySelectorAll('.seo-expand-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var targetId = btn.getAttribute('aria-controls');
+      var panel = document.getElementById(targetId);
+      if (!panel) return;
+      var isOpen = panel.classList.contains('open');
+      panel.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      btn.querySelector('.expand-icon').style.transform = !isOpen ? 'rotate(90deg)' : '';
+    });
+  });
+})();
 
 /* ===== SEO ARTICLES CAROUSEL ===== */
 (function() {
