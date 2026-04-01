@@ -344,15 +344,6 @@
     .nav-social-btn { animation: social-pulse 3s ease infinite; }
     .nav-social-btn.ig { animation-delay: 1.5s; }
 
-    /* ===== CONFETTI VIDEO ===== */
-    .confetti-vid {
-      position: absolute; top: 0; height: 100%; width: 42%;
-      object-fit: cover; pointer-events: none; z-index: 3;
-      opacity: 0; transition: opacity 0.4s;
-    }
-    #confetti-vid-left  { left: 0; }
-    #confetti-vid-right { right: 0; transform: scaleX(-1); }
-    .confetti-vid.playing { opacity: 1; }
     /* Textes hero toujours au-dessus du canvas confetti */
     #hero .hero-logo, #hero .hero-badge, #hero .hero-title,
     #hero .hero-subtitle, #hero .hero-tagline, #hero .hero-date,
@@ -1544,8 +1535,6 @@
 
 <!-- ===== HERO ===== -->
 <section id="hero" aria-label="Bienvenue">
-  <video id="confetti-vid-left"  class="confetti-vid" src="assets/Videos/video%20fond%20bleu%20conffetis.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
-  <video id="confetti-vid-right" class="confetti-vid" src="assets/Videos/video%20fond%20bleu%20conffetis.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
   <div class="hero-bg-shapes" aria-hidden="true"></div>
   <div class="hero-50" aria-hidden="true">50</div>
 
@@ -2703,24 +2692,6 @@ document.addEventListener('keydown', function(e) {
     document.body.style.overflow = '';
   }
 });
-
-/* ===== CONFETTI VIDEO ===== */
-(function() {
-  var vLeft  = document.getElementById('confetti-vid-left');
-  var vRight = document.getElementById('confetti-vid-right');
-  if (!vLeft || !vRight) return;
-  var fired = false;
-  function fire() {
-    fired = true;
-    [vLeft, vRight].forEach(function(v) { v.currentTime = 0; v.classList.add('playing'); v.play(); });
-  }
-  vLeft.addEventListener('ended', function() {
-    vLeft.classList.remove('playing'); vRight.classList.remove('playing');
-  });
-  window.addEventListener('scroll', function() {
-    if (!fired && window.scrollY > 40) fire();
-  }, { passive: true });
-})();
 
 /* ===== SEO ARTICLES EXPAND ===== */
 (function() {
