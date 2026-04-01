@@ -345,13 +345,15 @@
     .nav-social-btn.ig { animation-delay: 1.5s; }
 
     /* ===== CONFETTI VIDEO ===== */
-    #confetti-video {
-      position: absolute; inset: 0; width: 100%; height: 100%;
+    .confetti-vid {
+      position: absolute; top: 0; height: 100%; width: 42%;
       object-fit: cover; pointer-events: none; z-index: 2;
       opacity: 0; transition: opacity 0.4s;
-      mix-blend-mode: screen;
+      mix-blend-mode: multiply;
     }
-    #confetti-video.playing { opacity: 1; }
+    #confetti-vid-left  { left: 0; }
+    #confetti-vid-right { right: 0; transform: scaleX(-1); }
+    .confetti-vid.playing { opacity: 1; }
     /* Textes hero toujours au-dessus du canvas confetti */
     #hero .hero-logo, #hero .hero-badge, #hero .hero-title,
     #hero .hero-subtitle, #hero .hero-tagline, #hero .hero-date,
@@ -1543,7 +1545,8 @@
 
 <!-- ===== HERO ===== -->
 <section id="hero" aria-label="Bienvenue">
-  <video id="confetti-video" src="assets/confettis.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+  <video id="confetti-vid-left"  class="confetti-vid" src="assets/confettis.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+  <video id="confetti-vid-right" class="confetti-vid" src="assets/confettis.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
   <div class="hero-bg-shapes" aria-hidden="true"></div>
   <div class="hero-50" aria-hidden="true">50</div>
 
@@ -2539,21 +2542,25 @@ window.addEventListener('scroll', () => {
 
 /* ===== CONFETTI VIDEO ===== */
 (function() {
-  var video = document.getElementById('confetti-video');
-  if (!video) return;
+  var vLeft  = document.getElementById('confetti-vid-left');
+  var vRight = document.getElementById('confetti-vid-right');
+  if (!vLeft || !vRight) return;
 
   var running = false;
 
   function fire() {
     if (running) return;
     running = true;
-    video.currentTime = 0;
-    video.classList.add('playing');
-    video.play();
+    [vLeft, vRight].forEach(function(v) {
+      v.currentTime = 0;
+      v.classList.add('playing');
+      v.play();
+    });
   }
 
-  video.addEventListener('ended', function() {
-    video.classList.remove('playing');
+  vLeft.addEventListener('ended', function() {
+    vLeft.classList.remove('playing');
+    vRight.classList.remove('playing');
     running = false;
   });
 
