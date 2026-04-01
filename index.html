@@ -2126,7 +2126,7 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-/* ===== CONFETTI PHOTO-RÉALISTE ===== */
+/* ===== CONFETTI ===== */
 (function() {
   if (window.innerWidth < 769) return;
 
@@ -2134,95 +2134,76 @@ window.addEventListener('scroll', () => {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  // Palettes dorées et bleu foncé avec dégradé brillant [ombre, base, reflet, spéculaire]
-  const PALETTES = [
-    { k:'gold', s:['#5a3a00','#b8860b','#ffd700','#fff3a0'] },
-    { k:'gold', s:['#6b4800','#c8960c','#ffe033','#fffce0'] },
-    { k:'gold', s:['#7a5200','#d4a800','#ffcc00','#fff8cc'] },
-    { k:'gold', s:['#4a3000','#a07800','#f5c842','#fff0b0'] },
-    { k:'blue', s:['#020714','#0a1232','#1e2d80','#4a60c0'] },
-    { k:'blue', s:['#030a1a','#0d1640','#27348b','#5a70c8'] },
-    { k:'blue', s:['#040c20','#162070','#2e40a8','#6880d8'] },
-    { k:'blue', s:['#050f28','#1a2870','#3050b0','#7090e0'] },
-  ];
-
   let particles = [];
   let animId    = null;
   let running   = false;
 
   function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    const hero = canvas.parentElement;
+    canvas.width  = (hero && hero.offsetWidth)  || window.innerWidth;
+    canvas.height = (hero && hero.offsetHeight) || window.innerHeight;
   }
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
 
   function spawnCannon(fromLeft) {
     const cw = canvas.width;
     const ch = canvas.height;
-    // Canon caché dans l'ombre en bas, rapproché du centre
-    const ox = fromLeft ? cw * 0.26 : cw * 0.74;
-    const oy = ch * 0.92;
+    const ox = fromLeft ? cw * 0.24 : cw * 0.76;
+    const oy = ch * 0.88;
 
-    for (let i = 0; i < 32; i++) {
-      const pal   = PALETTES[Math.floor(Math.random() * PALETTES.length)];
-      const rnd   = Math.random();
-      let w, h, shape;
-      if (rnd < 0.50) {
-        // Grand confetti paysage
-        w = 32 + Math.random() * 26; h = 13 + Math.random() * 11; shape = 'rect';
-      } else if (rnd < 0.78) {
-        // Confetti portrait
-        w = 13 + Math.random() * 10; h = 30 + Math.random() * 22; shape = 'rect';
-      } else {
-        // Serpentin étroit et long
-        w = 4  + Math.random() * 3;  h = 55 + Math.random() * 35; shape = 'strip';
-      }
-      // Vitesse : vers le haut, légèrement écarté vers l'extérieur
-      const spreadOut = fromLeft ? -(Math.random() * 2.5) : (Math.random() * 2.5);
-      const vx = spreadOut + (Math.random() - 0.5) * 3;
-      const vy = -(8 + Math.random() * 8); // forte poussée vers le haut
+    for (let i = 0; i < 38; i++) {
+      const isGold      = Math.random() < 0.5;
+      const isLandscape = Math.random() < 0.6;
+      const w = isLandscape ? 22 + Math.random() * 20 : 11 + Math.random() * 9;
+      const h = isLandscape ? 10 + Math.random() * 8  : 22 + Math.random() * 20;
+
+      // Vitesse modérée vers le haut — pic à ~150-250px, reste dans le hero
+      const vx = (Math.random() - 0.5) * 3.5 + (fromLeft ? -0.8 : 0.8);
+      const vy = -(3.2 + Math.random() * 3.2);
+
       particles.push({
-        x: ox + (Math.random() - 0.5) * 50,
+        x: ox + (Math.random() - 0.5) * 60,
         y: oy,
-        vx, vy, pal, shape, w, h,
-        alpha: 0, // démarre invisible → émergence de l'ombre
-        rot:   Math.random() * Math.PI * 2,
-        rotV:  (Math.random() - 0.5) * 0.18,
-        gravity: 0.036 + Math.random() * 0.022,
-        drag:    0.993 + Math.random() * 0.005,
-        life: 0,
-        maxLife: 320 + Math.floor(Math.random() * 100)
+        vx, vy, w, h, isLandscape,
+        type:    isGold ? 'gold' : 'blue',
+        alpha:   1,
+        rot:     Math.random() * Math.PI * 2,
+        rotV:    (Math.random() - 0.5) * 0.15,
+        gravity: 0.034 + Math.random() * 0.018,
+        drag:    0.992 + Math.random() * 0.006,
+        life:    0,
+        maxLife: 290 + Math.floor(Math.random() * 110)
       });
     }
   }
 
   function drawParticle(p) {
     ctx.save();
-    ctx.globalAlpha = p.alpha;
     ctx.translate(p.x, p.y);
     ctx.rotate(p.rot);
+    ctx.globalAlpha = p.alpha;
 
-    // Dégradé brillant simulant le reflet de la feuille
-    const g = ctx.createLinearGradient(-p.w / 2, -p.h / 2, p.w / 2, p.h / 2);
-    g.addColorStop(0,    p.pal.s[0]);
-    g.addColorStop(0.30, p.pal.s[1]);
-    g.addColorStop(0.65, p.pal.s[2]);
-    g.addColorStop(1,    p.pal.s[3]);
+    const hw = p.w / 2, hh = p.h / 2;
+    ctx.shadowColor   = 'rgba(0,0,0,0.38)';
+    ctx.shadowBlur    = 3;
+    ctx.shadowOffsetX = 1.5;
+    ctx.shadowOffsetY = 1.5;
 
-    // Ombre portée → profondeur
-    ctx.shadowColor    = 'rgba(0,0,0,0.45)';
-    ctx.shadowBlur     = 5;
-    ctx.shadowOffsetX  = 2;
-    ctx.shadowOffsetY  = 2;
-    ctx.fillStyle = g;
-    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-
-    // Reflet spéculaire (coin supérieur gauche)
-    ctx.shadowBlur = 0; ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
-    ctx.globalAlpha = p.alpha * (p.pal.k === 'gold' ? 0.60 : 0.40);
-    ctx.fillStyle   = p.pal.k === 'gold' ? 'rgba(255,255,200,0.75)' : 'rgba(160,200,255,0.55)';
-    ctx.fillRect(-p.w / 2, -p.h / 2, p.w * 0.38, p.h * 0.38);
+    if (p.type === 'blue') {
+      ctx.fillStyle = '#1a3fbd';
+      ctx.fillRect(-hw, -hh, p.w, p.h);
+    } else {
+      // Foil doré : dégradé sur le petit côté → effet reflet métallique
+      const g = p.isLandscape
+        ? ctx.createLinearGradient(-hw, -hh, -hw, hh)   // haut→bas
+        : ctx.createLinearGradient(-hw, -hh, hw, -hh);  // gauche→droite
+      g.addColorStop(0,    '#7a5200');
+      g.addColorStop(0.28, '#d4a800');
+      g.addColorStop(0.50, '#fff0a0');
+      g.addColorStop(0.72, '#d4a800');
+      g.addColorStop(1,    '#7a5200');
+      ctx.fillStyle = g;
+      ctx.fillRect(-hw, -hh, p.w, p.h);
+    }
 
     ctx.restore();
   }
@@ -2238,7 +2219,7 @@ window.addEventListener('scroll', () => {
 
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles = particles.filter(p => p.life < p.maxLife && p.alpha > 0.005);
+    particles = particles.filter(p => p.life < p.maxLife && p.alpha > 0.01);
     particles.forEach(p => {
       p.life++;
       p.x   += p.vx;
@@ -2247,12 +2228,8 @@ window.addEventListener('scroll', () => {
       p.vx  *= p.drag;
       p.vy  *= p.drag;
       p.rot += p.rotV;
-      // Émergence rapide de l'ombre (10 premières frames)
-      if (p.life <= 10) p.alpha = p.life / 10;
-      // Fondu sur les 30 derniers % de vie
-      else if (p.life > p.maxLife * 0.70)
+      if (p.life > p.maxLife * 0.70)
         p.alpha = 1 - (p.life - p.maxLife * 0.70) / (p.maxLife * 0.30);
-      else p.alpha = 1;
       drawParticle(p);
     });
     if (particles.length > 0) {
@@ -2264,9 +2241,17 @@ window.addEventListener('scroll', () => {
     }
   }
 
+  // Déclenche automatiquement 1.2s après le chargement + au scroll
+  window.addEventListener('load', () => {
+    resize();
+    setTimeout(() => { if (!running) fire(); }, 1200);
+  }, { once: true });
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40 && !running) fire();
   }, { passive: true });
+
+  window.addEventListener('resize', resize, { passive: true });
 })();
 </script>
 </div><!-- /page-wrapper -->
