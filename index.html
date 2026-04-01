@@ -349,10 +349,12 @@
       position: absolute; top: 0; height: 100%; width: 42%;
       object-fit: cover; pointer-events: none; z-index: 3;
       opacity: 0; transition: opacity 0.4s;
+      mix-blend-mode: screen;
+      filter: invert(1) brightness(0.78);
     }
     #confetti-vid-left  { left: 0; }
     #confetti-vid-right { right: 0; transform: scaleX(-1); }
-    .confetti-vid.playing { opacity: 1; }
+    .confetti-vid.playing { opacity: 0.82; }
     /* Textes hero toujours au-dessus du canvas confetti */
     #hero .hero-logo, #hero .hero-badge, #hero .hero-title,
     #hero .hero-subtitle, #hero .hero-tagline, #hero .hero-date,
