@@ -323,13 +323,7 @@
     /* ===== CONFETTI ===== */
     #confetti-canvas {
       position: absolute; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 2;
-    }
-    /* Textes hero toujours au-dessus du canvas confetti */
-    #hero .hero-logo, #hero .hero-badge, #hero .hero-title,
-    #hero .hero-subtitle, #hero .hero-tagline, #hero .hero-date,
-    #hero .hero-btns, #hero .countdown-wrapper {
-      position: relative; z-index: 3;
+      pointer-events: none; z-index: 5;
     }
 
     /* ===== HERO ===== */
@@ -2134,7 +2128,6 @@ window.addEventListener('scroll', () => {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  // Palettes dorées et bleu foncé avec dégradé brillant [ombre, base, reflet, spéculaire]
   const PALETTES = [
     { k:'gold', s:['#5a3a00','#b8860b','#ffd700','#fff3a0'] },
     { k:'gold', s:['#6b4800','#c8960c','#ffe033','#fffce0'] },
@@ -2151,10 +2144,13 @@ window.addEventListener('scroll', () => {
   let running   = false;
 
   function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    // Utilise innerWidth/innerHeight comme référence fiable
+    const hero = canvas.parentElement;
+    canvas.width  = hero ? hero.offsetWidth  || window.innerWidth  : window.innerWidth;
+    canvas.height = hero ? hero.offsetHeight || window.innerHeight : window.innerHeight;
   }
-  resize();
+  // Attend que le layout soit calculé avant de mesurer
+  window.addEventListener('load', () => { resize(); }, { once: true });
   window.addEventListener('resize', resize, { passive: true });
 
   function spawnCannon(fromLeft) {
@@ -2186,7 +2182,7 @@ window.addEventListener('scroll', () => {
         x: ox + (Math.random() - 0.5) * 50,
         y: oy,
         vx, vy, pal, shape, w, h,
-        alpha: 0, // démarre invisible → émergence de l'ombre
+        alpha: 1,
         rot:   Math.random() * Math.PI * 2,
         rotV:  (Math.random() - 0.5) * 0.18,
         gravity: 0.036 + Math.random() * 0.022,
@@ -2247,8 +2243,6 @@ window.addEventListener('scroll', () => {
       p.vx  *= p.drag;
       p.vy  *= p.drag;
       p.rot += p.rotV;
-      // Émergence rapide de l'ombre (10 premières frames)
-      if (p.life <= 10) p.alpha = p.life / 10;
       // Fondu sur les 30 derniers % de vie
       else if (p.life > p.maxLife * 0.70)
         p.alpha = 1 - (p.life - p.maxLife * 0.70) / (p.maxLife * 0.30);
@@ -2263,6 +2257,11 @@ window.addEventListener('scroll', () => {
       running = false;
     }
   }
+
+  // Déclenche aussi automatiquement 1.5s après le chargement de la page
+  window.addEventListener('load', () => {
+    setTimeout(() => { if (!running) fire(); }, 1500);
+  }, { once: true });
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40 && !running) fire();
